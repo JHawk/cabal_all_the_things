@@ -3,7 +3,9 @@ Josh Hawkins
 
 April 24, 2013
 
-“Languages flourish when libraries are plentiful, reliable, and well documented.” - Simon Peyton Jones
+-----------
+
+![](./img/cabal_start.jpg)
 
 -----------
 
@@ -13,6 +15,8 @@ April 24, 2013
 * It describes how packages interact with the language.
 * It describes what Haskell implementations support packages. 
 * It provides a way to express dependency on particular libraries, compilers, or versions. 
+
+“Languages flourish when libraries are plentiful, reliable, and well documented.” - Simon Peyton Jones
 
 -----------
 
@@ -160,8 +164,12 @@ Once that's done searching for the latest package is simple using the **list** c
     * Guesses at obvious descriptors - name, version, author, maintainer...
     * Gives some common options for the necessary fields 
     * Generates a template LICENSE for you.
-    * Adds a specified Section - Library or Executable.
-    * Adds descriptions and TODOs to the .cabal file.
+    * Adds a specified Section - Library or Executable
+    * Adds descriptions and TODOs to the .cabal file
+
+-----------
+
+![](./img/cabal_init.png)
 
 -----------
 
@@ -270,13 +278,13 @@ Some set flags or tokens.
       buildable: False        
 
 -----------
+
+![Alt text](./img/screenshot.jpg)
+
+-----------
  
 ### Use it via _cabal configure_
     $ cabal configure --flags=benchmarks
-
------------
-
-add screenshot of cond thingy
 
 -----------
 
@@ -428,15 +436,14 @@ add screenshot of cond thingy
 
 -----------
 
-
-
-
-
 ### For More Information
     $ cabal unpack cabal && cd Cabal-1.16.*** && cabal configure && cabal haddock
 
 -----------
 
+![](./img/cabal_end.jpg)
+
+-----------
 ### Extending Cabal
 
 
