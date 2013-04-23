@@ -95,10 +95,11 @@
 </ul>
 <hr />
 </section>
-<section id="explore-all-the-packages" class="level2">
-<h2>Explore All the Packages</h2>
-<section id="some-commands-for-fetching-and-inspecting-libraries." class="level5">
-<h5>Some commands for fetching and inspecting libraries.</h5>
+</section>
+<section id="explore-all-the-packages" class="level1">
+<h1>Explore All the Packages</h1>
+<section id="some-commands-for-fetching-managing-and-inspecting-packages." class="level3">
+<h3>Some commands for fetching, managing and inspecting packages.</h3>
 <pre><code>* update 
 * list
 * install
@@ -107,13 +108,18 @@
 <hr />
 </section>
 </section>
-<section id="what-does-cabal-update-do" class="level2">
-<h2>What does <em>cabal update</em> do?</h2>
+<section id="cabal-update" class="level1">
+<h1><em>cabal update</em></h1>
+<section id="what-does-it-do" class="level3">
+<h3>What does it do?</h3>
 <ul>
 <li>This will download the most recent list of packages.</li>
 <li>Where is it downloading this list from?</li>
 </ul>
 <hr />
+</section>
+<section id="take-a-look-at-the-output." class="level3">
+<h3>Take a look at the output.</h3>
 <pre><code>  $ cabal update --verbose=3
   Downloading the latest package list from hackage.haskell.org
   Sending:
@@ -136,23 +142,9 @@
   Updating the index cache file...
   Reading available packages...</code></pre>
 <hr />
-<section id="cabal-lets-you-know..." class="level3">
-<h3>Cabal lets you know...</h3>
-<section id="when-your-packages-need-an-update." class="level4">
-<h4>when your packages need an update.</h4>
-<pre><code>Warning: The package list for &#39;hackage.haskell.org&#39; is 17 days old.
-Run &#39;cabal update&#39; to get the latest list of available packages.</code></pre>
 </section>
-<section id="when-your-cabal-install-needs-an-update." class="level4">
-<h4>when your cabal-install needs an update.</h4>
-<pre><code>Note: there is a new version of cabal-install available.
-            To upgrade, run: cabal install cabal-install</code></pre>
-<hr />
-</section>
-</section>
-</section>
-<section id="lets-try-out-cabal-list." class="level2">
-<h2>Lets try out <em>cabal list</em>.</h2>
+<section id="lets-try-out-cabal-list." class="level3">
+<h3>Lets try out &quot;cabal list&quot;.</h3>
 <pre><code>  $ cabal list snaplet-tasks
   * snaplet-tasks
       Synopsis: Snaplet for Snap Framework enabling developers to administrative
@@ -162,15 +154,31 @@ Run &#39;cabal update&#39; to get the latest list of available packages.</code><
       License:  BSD3
   Top level overview of the package available</code></pre>
 <hr />
-<section id="what-does-cabal-install-do" class="level3">
-<h3>What does <em>cabal install</em> do?</h3>
+</section>
+<section id="cabal-lets-you-know..." class="level3">
+<h3>Cabal lets you know...</h3>
+<p><strong>when your packages need an update.</strong></p>
+<pre><code>Warning: The package list for &#39;hackage.haskell.org&#39; is 17 days old.
+Run &#39;cabal update&#39; to get the latest list of available packages.</code></pre>
+<p><strong>when your cabal-install needs an update.</strong></p>
+<pre><code>Note: there is a new version of cabal-install available.
+            To upgrade, run: cabal install cabal-install</code></pre>
+<hr />
+</section>
+</section>
+<section id="cabal-install" class="level1">
+<h1><em>cabal install</em></h1>
+<section id="it-does-lots-of-work-for-you." class="level4">
+<h4>It does lots of work for you.</h4>
 <ul>
-<li>Resolving dependencies...</li>
 <li>Grabs the Library's Dependencies.</li>
 <li>Grabs the Library you specified.</li>
 <li>Build, compiles, installs, registers, generates docs...</li>
 </ul>
 <hr />
+</section>
+<section id="some-example-output" class="level3">
+<h3>Some example output</h3>
 <pre><code>$ cabal install snap
 Resolving dependencies...
 Downloading MonadCatchIO-transformers-0.3.0.0...
@@ -179,6 +187,9 @@ Building MonadCatchIO-transformers-0.3.0.0...
 Preprocessing library MonadCatchIO-transformers-0.3.0.0...
 [1 of 1] Compiling Control.Monad.CatchIO ( src/Control/Monad/CatchIO.hs, dist/build/Control/Monad/CatchIO.o )</code></pre>
 <hr />
+</section>
+<section id="continued" class="level3">
+<h3>Continued…</h3>
 <pre><code>Documentation created: dist/doc/html/snap/index.html
 Installing library in
 /Users/jhawkins/Library/Haskell/ghc-7.4.2/lib/snap-0.11.2.2/lib
@@ -188,18 +199,21 @@ Registering snap-0.11.2.2...
 Installed snap-0.11.2.2
 Updating documentation index /Users/jhawkins/Library/Haskell/doc/index.html</code></pre>
 <hr />
-<section id="if-you-really-want-to-know-what-a-package-is-doing" class="level5">
-<h5>If you really want to know what a package is doing,</h5>
 </section>
 </section>
-<section id="cabal-unpack" class="level3">
-<h3><em>cabal unpack</em></h3>
+<section id="take-a-look-at-the-source." class="level1">
+<h1>Take a look at the Source.</h1>
+<section id="get-your-hands-dirty-with-cabal-unpack." class="level3">
+<h3>Get your hands dirty with &quot;cabal unpack&quot;.</h3>
 <ul>
 <li>This simply Downloads the package from Hackage</li>
 <li>Creates a versioned directory</li>
 <li>And drops the source code right there.</li>
 </ul>
 <hr />
+</section>
+<section id="some-example-output-1" class="level3">
+<h3>Some example output</h3>
 <pre><code>$ cabal unpack snap --verbose=3
 Reading available packages...
 snap-0.11.2.2 has already been downloaded.
@@ -208,16 +222,19 @@ Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.</code
 <hr />
 </section>
 <section id="generate-some-documentation-via-cabal-haddock" class="level3">
-<h3>Generate Some Documentation via <em>cabal haddock</em></h3>
+<h3>Generate Some Documentation via &quot;cabal haddock&quot;</h3>
 <ul>
-<li>Generates some nicely formatted html.</li>
+<li>Generates some nicely formatted html</li>
 <li>Documentation created: dist/doc/html/fizzbuzz/fizzbuzz/index.html</li>
 <li>This is another option when exploring the api of a library found on hackage.</li>
 </ul>
 <hr />
 </section>
-<section id="develop-all-the-packages" class="level3">
-<h3>Develop All the Packages</h3>
+</section>
+<section id="develop-all-the-packages" class="level1">
+<h1>Develop All the Packages</h1>
+<section id="commands-to-guide-development" class="level3">
+<h3>Commands to guide development</h3>
 <pre><code>* init
 * configure
 * build
@@ -228,56 +245,74 @@ Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.</code
 <hr />
 </section>
 <section id="what-does-cabal-init-do" class="level3">
-<h3>What does <em>cabal init</em> do?</h3>
-<ul>
-<li>An interactive command that aids in the generation of a .cabal file.</li>
-<li><p>Coaches you through the pains of getting a simple .cabal file filled out the first time.</p>
+<h3>What does &quot;cabal init&quot; do?</h3>
+<section id="an-interactive-command-that-aids-in-the-generation-of-a-.cabal-file" class="level4">
+<h4>An interactive command that aids in the generation of a .cabal file</h4>
 <ul>
 <li>Guesses at obvious descriptors - name, version, author, maintainer...</li>
 <li>Gives some common options for the necessary fields</li>
 <li>Generates a template LICENSE for you.</li>
 <li>Adds a specified Section - Library or Executable</li>
 <li>Adds descriptions and TODOs to the .cabal file</li>
-</ul></li>
 </ul>
 <hr />
-<figure>
-<img src="./img/cabal_init.png" />
-</figure>
+</section>
+</section>
+<section id="some-example-prompts" class="level3">
+<h3>Some example prompts</h3>
+<pre><code>$ Package name? [default: scratch] 
+Package version? [default: 0.1.0.0] 
+Please choose a license:
+ * 1) (none)
+   2) GPL-2
+   3) GPL-3
+   4) LGPL-2.1
+   5) LGPL-3
+   6) BSD3
+   7) MIT
+   8) Apache-2.0
+   9) PublicDomain
+  10) AllRightsReserved
+  11) Other (specify)</code></pre>
 <hr />
 </section>
-<section id="cabal-all-the-fields" class="level3">
-<h3>.cabal All the Fields</h3>
-<p>Defined in the PackageDescription module of cabal</p>
-<pre><code>* Provides a declarative description of your package.
-* Contains a top level description for use by Hackage.
-* Contains Build Information.
-* Contains Flags
-* Contains a few Sections with build information.
-    Library
-    Executable
-    TestSuite
-    Benchmark</code></pre>
+<section id="continued-1" class="level3">
+<h3>Continued…</h3>
+<pre><code>What does the package build:
+   1) Library
+   2) Executable
+Your choice? 1
+Include documentation on what each field means (y/n)? [default: n] </code></pre>
+<hr />
+</section>
+</section>
+<section id="cabal-all-the-fields" class="level1">
+<h1>.cabal All the Fields</h1>
+<section id="defined-in-the-packagedescription-module-of-cabal" class="level5">
+<h5>Defined in the PackageDescription module of cabal</h5>
+<ul>
+<li>Provides a declarative description of your package.</li>
+<li>Contains a top level description for use by Hackage.</li>
+<li>Contains Build Information.</li>
+<li>Contains Flags</li>
+<li>Contains a few Sections with build information.</li>
+</ul>
 <hr />
 </section>
 <section id="top-level-description" class="level3">
 <h3>Top Level Description</h3>
-<p>A place for all the metadata about the package for use by Hackage.</p>
+<p><strong>A place for metadata about the package for use by Hackage</strong></p>
 <pre><code>name:               enterpriseFizzBuzz
-
--- elaborate on the importance of version
 version:            1.15.3.1
 synopsis:           The command-line interface for FizzBuzzing up to a number!
-description:        A very complex tool for taking a number from the command line and printing a formatted string that replaces numbers divisible by 3 with &#39;Fizz&#39;, numbers divisible by 5 with &#39;Buzz&#39; and numbers divisible by 3 and 5 with &#39;FizzBuzz&#39;.
+description:        A very complex tool for … add lots of description here...
 homepage:           http://www.haskell.org/enterpriseFizzBuzz/
 bug-reports:        https://github.com/JHawk/enterpriseFizzBuzz/issues
 license:            BSD3
 license-file:       LICENSE
 author:             JHawk &lt;jhawk@fizzbuzzEnterprises.com&gt;
 maintainer:         jhawk@fizzBuzzEnterprises.com
-copyright:          2013 JHawk &lt;jhawk@fizzbuzzEnterprises.com&gt;
 category:           Text
-tested-with:        GHC == 7.0.2
 
 source-repository head
   type:     git
@@ -287,7 +322,7 @@ source-repository head
 </section>
 <section id="build-description" class="level3">
 <h3>Build Description</h3>
-<pre><code>build-type:         Simple 
+<pre><code>build-type:         Simple
 cabal-version:      &gt;=1.8
 
 -- defines other files to be packaged and distributed
@@ -297,8 +332,8 @@ extra-source-files: README bootstrap.sh
 </section>
 <section id="a-few-common-package-build-fields" class="level3">
 <h3>A Few Common Package Build Fields</h3>
-<p>Some have subfields.</p>
-<pre><code>build-depends:
+<pre><code>-- some have subfields
+build-depends:
   -- prelude +
   base &gt;= 2,
   buzz,
@@ -306,16 +341,17 @@ extra-source-files: README bootstrap.sh
   fizz &gt;= 1.2 &amp;&amp; &lt; 1.3
   -- fizz ==1.2.*
   
--- private : package level visibility
+-- package level visibility only
 -- compile but don&#39;t export
 other-modules:  
-    EnterpriseFizzBuzz.FizzBuzz</code></pre>
-<p>Some specify specific variables.</p>
-<pre><code>buildable: false
-hs-source-dirs: src/FizzBuzz</code></pre>
-<p>Some set flags or tokens.</p>
-<pre><code>ghc-options: -Wall -fwarn-tabs -threaded
-extensions: CPP, ForeignFunctionInterface // TODO</code></pre>
+    EnterpriseFizzBuzz.FizzBuzz
+
+-- Some specify specific variables
+buildable: false
+hs-source-dirs: src/FizzBuzz
+
+-- Some set flags or tokens
+ghc-options: -Wall -fwarn-tabs</code></pre>
 <hr />
 </section>
 <section id="conditional-thingy" class="level3">
@@ -328,37 +364,32 @@ else
     bytestring &gt;= 0.10.0 &amp;&amp; &lt;0.11</code></pre>
 <hr />
 </section>
-<section id="define-your-own-flag-thingy" class="level3">
-<h3>Define Your Own Flag Thingy</h3>
-<pre><code>flag benchmarks
-  description: Build the benchmarks
-  default: False
-
-if flag(benchmarks)
+<section id="define-your-own-condtional-thingy" class="level3">
+<h3>Define Your Own Condtional Thingy</h3>
+<p><strong>Define it at top level</strong></p>
+<pre><code>flag build-stuff
+  description: Build if True
+  default: False</code></pre>
+<p><strong>Conditional logic in your .cabal Sections</strong></p>
+<pre><code>if flag(build-stuff)
   buildable: True
-  build-depends: criterion
+  build-depends: someSpecialDep
 else
-  buildable: False        </code></pre>
-<hr />
-<figure>
-<img src="./img/screenshot.jpg" alt="Alt text" /><figcaption>Alt text</figcaption>
-</figure>
+  buildable: False</code></pre>
+<p><strong>Use it via <em>cabal configure</em></strong></p>
+<pre><code>$ cabal configure --flags=build-stuff</code></pre>
 <hr />
 </section>
-<section id="use-it-via-cabal-configure" class="level3">
-<h3>Use it via <em>cabal configure</em></h3>
-<pre><code>$ cabal configure --flags=benchmarks</code></pre>
-<hr />
+<section id="section-1" class="level2">
+<h2><img src="./img/screenshot.jpg" /></h2>
 </section>
+</section>
+<section id="cabal-sections" class="level1">
+<h1>.cabal Sections</h1>
 <section id="library-section" class="level3">
 <h3>Library Section</h3>
-<section id="requires-exposed-modules" class="level5">
-<h5>Requires exposed-modules</h5>
-<ul>
-<li>All modules are either exposed-modules or other-modules.</li>
-<li>Contains fields and subsections for describing how to build the library.</li>
-</ul>
-<hr />
+<p><strong>Requires exposed-modules</strong></p>
+<p>Describes modules exposed to those using your package</p>
 <pre><code>library
   build-depends:
     base         &gt;= 4 &amp;&amp; &lt;= 5 
@@ -372,112 +403,100 @@ else
     , EnterpriseFizzBuzz.FizzBuzz</code></pre>
 <hr />
 </section>
-</section>
 <section id="executable-section" class="level3">
 <h3>Executable Section</h3>
-<section id="main-is-is-the-main-difference." class="level5">
-<h5>Main-Is is the main difference.</h5>
-</section>
-<section id="requires-main-is-unique-identifier" class="level5">
-<h5>Requires Main-Is, Unique Identifier</h5>
-<hr />
+<p><strong>Requires Main-Is, Unique Identifier</strong></p>
+<p>Describes an executable runnable from the command line</p>
 <pre><code>executable enterpriseFizzBuzz
-  ghc-options: -Wall -threaded
-  if impl(ghc &gt;= 6.8)
-    ghc-options: -fwarn-tabs
+  build-depends:     base ==4.5.*
+  hs-source-dirs:    src
+
+  main-is:           Main.hs
   
-  other-modules:
-    Command.ParseNumber
-    
-  build-depends: 
-      base     &gt;= 4 &amp;&amp; &lt;= 5 
-    , network  &gt;= 1 &amp;&amp; &lt; 3
-    , fizzBuzz
-
-  hs-source-dirs: src/
-  main-is:        Main.hs
-
   -- alternatively 
   -- main-is:     src/Main.hs</code></pre>
+<p>Are exposed-modules available?</p>
 <hr />
-</section>
 </section>
 <section id="test-suite-section" class="level3">
 <h3>Test-Suite Section</h3>
-<section id="requires-unique-identifier-main-is-type" class="level5">
-<h5>Requires Unique Identifier, Main-Is, Type</h5>
-<ul>
-<li>Describes executables that indicate failure with a non-zero exit code.</li>
-<li>more description</li>
-</ul>
-<hr />
-<pre><code>test-suite fizzbuzz-tests
-  hs-source-dirs: tests
-  build-depends:
-      base
-    , test-framework
-    , test-framework-hunit
-    , test-framework-quickcheck2
-    , HUnit
-    , QuickCheck
-    , enterpriseFizzBuzz
+<p><strong>Requires Unique Identifier, Main-Is, Type</strong></p>
+<p>Executable that indicates failure with a non-zero exit code.</p>
+<pre><code>test-suite enterpriseUnit
+  build-depends:     base ==4.5.*
+                   , HUnit
+                   , test-framework
+                   , test-framework-hunit
+                   , enterpriseFizzBuzz
 
-  main-is: UnitTests.hs
+  hs-source-dirs:    test-suite/unit
 
-  type: exitcode-stdio-1.0</code></pre>
+  type:              exitcode-stdio-1.0
+  main-is:           Enterprise/FizzBuzzUnitTests.hs</code></pre>
+<p>Are exposed-modules available?</p>
 <hr />
-</section>
 </section>
 <section id="benchmark-section" class="level3">
 <h3>Benchmark Section</h3>
-<section id="requires-unique-identifier-main-is-type-1" class="level5">
-<h5>Requires Unique Identifier, Main-Is, Type</h5>
-<ul>
-<li>Describes executables that indicate failure with a non-zero exit code.</li>
-<li>more description</li>
-</ul>
+<p><strong>Requires Unique Identifier, Main-Is, Type</strong></p>
+<p>Executable that indicates failure with a non-zero exit code.</p>
+<pre><code>benchmark enterpriseBench
+  build-depends:     base ==4.5.*
+                   , criterion
+                   , enterpriseFizzBuzz
+
+  hs-source-dirs:    bench
+
+  type:              exitcode-stdio-1.0
+  main-is:           Enterprise/FizzBuzzBenchmarks.hs</code></pre>
+<p>Are exposed-modules available?</p>
 <hr />
-<pre><code>benchmark fizzbuzz-benchmarker
-  type:             exitcode-stdio-1.0
-  main-is:          FizzBuzzBench.hs
-  build-depends:    base
-                  , criterion</code></pre>
-<hr />
-</section>
 </section>
 <section id="look-at-a-complete-.cabal-file." class="level3">
 <h3>Look at a Complete .cabal File.</h3>
 <hr />
 </section>
-<section id="srcmain.hs" class="level3">
-<h3>src/Main.hs</h3>
-<pre><code>screenshot</code></pre>
+</section>
+<section id="create-all-the-code" class="level1">
+<h1>Create All the Code</h1>
+<section id="simple-main" class="level3">
+<h3>Simple Main</h3>
+<p><strong>src/Main.hs</strong></p>
+<figure>
+<img src="./img/main.jpg" />
+</figure>
 <hr />
 </section>
-<section id="srcenterprisefizzbuzz.hs" class="level3">
-<h3>src/Enterprise/FizzBuzz.hs</h3>
-<pre><code>screenshot</code></pre>
+<section id="stub-module-in-library" class="level3">
+<h3>Stub Module in Library</h3>
+<p><strong>src/Enterprise/FizzBuzz.hs</strong></p>
+<figure>
+<img src="./img/libUndefined.jpg" />
+</figure>
 <hr />
 </section>
+</section>
+<section id="run-all-the-code" class="level1">
+<h1>Run All the Code</h1>
 <section id="what-does-cabal-configure-do" class="level3">
-<h3>What does <em>cabal configure</em> do?</h3>
+<h3>What does &quot;cabal configure&quot; do?</h3>
+<p><strong>Prepares to build the package</strong></p>
 <ul>
-<li>Prepares to build the package.</li>
-<li>Looks for available packages -&gt; Reading available packages...</li>
-<li>Tries to resolve dependecies -&gt; Resolving dependencies...</li>
-<li>Decides which tools to use -&gt; Using tar found on system at : /usr/bin/tar</li>
-<li>At least the following dependencies are missing: GraphSCC ==1.0.3, HStringTemplate ==0.6.12, …</li>
+<li>Looks for available packages</li>
+<li>Tries to resolve dependecies</li>
+<li>Decides which tools to use</li>
+<li>Tells which dependecies aren't available</li>
 </ul>
 <hr />
-<section id="what-does-cabal-build-do" class="level4">
-<h4>What does <em>cabal build</em> do?</h4>
+</section>
+<section id="what-does-cabal-build-do" class="level3">
+<h3>What does &quot;cabal build&quot; do?</h3>
 <ul>
 <li>Runs cabal configure with most recently used options.</li>
 <li>Creates dist/build</li>
 <li>Builds the package and puts it in dist/build/enterpriseFizzBuzz/enterpriseFizzBuzz</li>
 </ul>
 <hr />
-</section>
 </section>
 <section id="what-happens-when-i-run-it" class="level3">
 <h3>What happens when I run it?</h3>
@@ -487,12 +506,12 @@ How many numbers should I FizzBuzz.
 4
 enterpriseFizzBuzz: Prelude.undefined</code></pre>
 <hr />
-<section id="how-do-i-go-about-testing-my-code" class="level4">
-<h4>How do I go about testing my code?</h4>
 </section>
 </section>
-<section id="test-framework" class="level3">
-<h3>test-framework</h3>
+<section id="test-all-the-code" class="level1">
+<h1>Test All the Code</h1>
+<section id="with-test-framework" class="level3">
+<h3>with test-framework</h3>
 <ul>
 <li>Test in parallel</li>
 <li>Report in deterministic order</li>
@@ -514,26 +533,20 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 </ul>
 <hr />
 </section>
-<section id="test-suiteunitenterprisetests.hs" class="level3">
-<h3>test-suite/unit/Enterprise/Tests.hs</h3>
-<pre><code>screenshot</code></pre>
+<section id="a-few-hunit-tests" class="level3">
+<h3>A few HUnit tests</h3>
+<figure>
+<img src="./img/unitTests.jpg" />
+</figure>
 <hr />
 </section>
 <section id="run-it-with-cabal-test" class="level3">
-<h3>Run it with <em>cabal test</em>!</h3>
+<h3>Run it with &quot;cabal test&quot;!</h3>
 <pre><code>$ cabal configure --enable-tests &amp;&amp; cabal build &amp;&amp; cabal test
 $ cabal configure --disable-tests &amp;&amp; cabal build</code></pre>
 <ul>
-<li>do the test-suite deps get added to the build if not enabled?</li>
-</ul>
-<hr />
-</section>
-<section id="quickcheck-if-i-have-time" class="level3">
-<h3>QuickCheck if i have time</h3>
-<ul>
-<li>blah</li>
-<li>blah</li>
-<li>blah</li>
+<li>What does it do?</li>
+<li>Do the test-suite deps get added to the build if not enabled?</li>
 </ul>
 <hr />
 </section>
@@ -596,7 +609,7 @@ $ cabal configure --disable-benchmarks &amp;&amp; cabal build</code></pre>
 </ul>
 <hr />
 </section>
-<section id="quickcheck-if-i-have-time-1" class="level3">
+<section id="quickcheck-if-i-have-time" class="level3">
 <h3>QuickCheck if i have time</h3>
 <ul>
 <li>blah</li>
@@ -626,7 +639,6 @@ $ cabal configure --disable-benchmarks &amp;&amp; cabal build</code></pre>
     
     test-module: FizzBuzz.Tests</code></pre>
 <hr />
-</section>
 </section>
 </section>
 </div>
