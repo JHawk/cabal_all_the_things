@@ -1,3 +1,5 @@
 pandoc --section-divs -t html5 -s --template template.revealjs -o cabal_all_the_things.html notes.md
 
-pandoc -s notes.md -o cabal_all_the_things.html --self-contained -t slid
+pandoc -s notes.md -o cabal_all_the_things.html --self-contained -t slidy
+
+pandoc -t html5 --template=templateCabalAllTheThings.html --standalone --section-divs --variable theme="beige" --variable transition="linear" notes.md -o cabal_all_the_things.html

@@ -1,22 +1,24 @@
-## Cabal All the Things: From Init to Testing to Dist
+####### Cabal 
+
+Cabal All the Things: From Init to Testing to Dist
+-----------
+
 Josh Hawkins
 
 April 24, 2013
 
+Forml pic
 -----------
 
 ![](./img/cabal_start.jpg)
-
 -----------
 
-### What is Cabal?
-##### A Common Architecture for Building Applications and Libraries
+# What is Cabal?
+### A Common Architecture for Building Applications and Libraries
 * It describes packages in a common way allowing for distribution, organization, and cataloging.
 * It describes how packages interact with the language.
 * It describes what Haskell implementations support packages. 
 * It provides a way to express dependency on particular libraries, compilers, or versions. 
-
-“Languages flourish when libraries are plentiful, reliable, and well documented.” - Simon Peyton Jones
 
 -----------
 
@@ -29,27 +31,28 @@ April 24, 2013
 -----------
 
 ### What is Cabal-Install?
-* It's a command line interface for cabal the Library.
-* Package management - installing, downloading and dependencies. 
-* Package development - building, testing and uploading packages.
+* It's a command line interface for Cabal the Library.
+* Package management - installing, downloading and dependencies
+* Package development - configuring, building, testing and benchmarking
+* Package sharing - packaging and uploading
 
 -----------
 
-### Explore All the Packages
+# Explore All the Packages
+##### Some commands for fetching and inspecting libraries.
     * update 
     * list
     * install
 	* unpack
+	* haddock
 
 -----------
 
-### What does _cabal update_ do?
+## What does _cabal update_ do?
 * This will download the most recent list of packages.
 * Where is it downloading this list from?
 
 -----------
-
-example using the **update** command:
 
       $ cabal update --verbose=3
       Downloading the latest package list from hackage.haskell.org
@@ -75,20 +78,19 @@ example using the **update** command:
 
 -----------
 
-### Sometimes Cabal will tell you to run an update.
+### Cabal lets you know...
+
+#### when your packages need an update.
     Warning: The package list for 'hackage.haskell.org' is 17 days old.
     Run 'cabal update' to get the latest list of available packages.
 
------------
- 
-### Sometimes Cabal will tell you cabal-install needs an update
+#### when your cabal-install needs an update.
     Note: there is a new version of cabal-install available.
                 To upgrade, run: cabal install cabal-install
 
 -----------
 
-### Lets try out _cabal list_.
-Once that's done searching for the latest package is simple using the **list** command:
+## Lets try out _cabal list_.
 
       $ cabal list snaplet-tasks
       * snaplet-tasks
@@ -146,6 +148,13 @@ Once that's done searching for the latest package is simple using the **list** c
 
 -----------
 
+### Generate Some Documentation via _cabal haddock_
+* Generates some nicely formatted html.
+* Documentation created: dist/doc/html/fizzbuzz/fizzbuzz/index.html
+* This is another option when exploring the api of a library found on hackage.
+
+-----------
+
 ### Develop All the Packages
     * init
     * configure
@@ -192,6 +201,8 @@ Defined in the PackageDescription module of cabal
 A place for all the metadata about the package for use by Hackage.
 
     name:               enterpriseFizzBuzz
+    
+    -- elaborate on the importance of version
     version:            1.15.3.1
     synopsis:           The command-line interface for FizzBuzzing up to a number!
     description:        A very complex tool for taking a number from the command line and printing a formatted string that replaces numbers divisible by 3 with 'Fizz', numbers divisible by 5 with 'Buzz' and numbers divisible by 3 and 5 with 'FizzBuzz'.
@@ -210,15 +221,16 @@ A place for all the metadata about the package for use by Hackage.
       location: https://github.com/JHawk/enterpriseFizzBuzz/
       subdir:   FizzBuzzLib
     
-    -- defines other files to be packaged and distributed
-    extra-source-files: README bootstrap.sh
-
 -----------
 
-### Required Build Description
+### Build Description
+
     build-type:         Simple 
     cabal-version:      >=1.8
-    
+
+    -- defines other files to be packaged and distributed
+    extra-source-files: README bootstrap.sh
+        
 -----------
 
 ### A Few Common Package Build Fields
@@ -236,18 +248,12 @@ Some have subfields.
     -- private : package level visibility
     -- compile but don't export
     other-modules:  
-        EnterpriseFizzBuzz.Fizz,
-        EnterpriseFizzBuzz.Buzz,
         EnterpriseFizzBuzz.FizzBuzz
-
------------
 
 Some specify specific variables.
  
     buildable: false
     hs-source-dirs: src/FizzBuzz
-
------------
     
 Some set flags or tokens.
     
@@ -303,9 +309,9 @@ Some set flags or tokens.
         EnterpriseFizzBuzz.HiddenStuff
       
       exposed-modules:  
-        EnterpriseFizzBuzz.Fizz,
-        EnterpriseFizzBuzz.Buzz,
-        EnterpriseFizzBuzz.FizzBuzz
+          EnterpriseFizzBuzz.Fizz
+        , EnterpriseFizzBuzz.Buzz
+        , EnterpriseFizzBuzz.FizzBuzz
 
 -----------
 
@@ -324,9 +330,9 @@ Some set flags or tokens.
         Command.ParseNumber
         
       build-depends: 
-        base     >= 4 && <= 5, 
-        network  >= 1 && < 3,
-		fizzBuzz
+          base     >= 4 && <= 5 
+        , network  >= 1 && < 3
+		, fizzBuzz
 
       hs-source-dirs: src/
       main-is:        Main.hs
@@ -346,13 +352,13 @@ Some set flags or tokens.
     test-suite fizzbuzz-tests
       hs-source-dirs: tests
       build-depends:
-        base,
-        test-framework,
-        test-framework-hunit,
-        test-framework-quickcheck2,
-        HUnit,
-        QuickCheck,
-        enterpriseFizzBuzz
+          base
+        , test-framework
+        , test-framework-hunit
+        , test-framework-quickcheck2
+        , HUnit
+        , QuickCheck
+        , enterpriseFizzBuzz
 
       main-is: UnitTests.hs
 
@@ -370,7 +376,8 @@ Some set flags or tokens.
     benchmark fizzbuzz-benchmarker
       type:             exitcode-stdio-1.0
       main-is:          FizzBuzzBench.hs
-      build-depends:    base, criterion
+      build-depends:    base
+                      , criterion
 
 -----------
 
@@ -378,8 +385,19 @@ Some set flags or tokens.
 
 -----------
 
-### How can I build / run it?
-    $ cabal configure && cabal build
+### src/Main.hs
+
+    
+    screenshot
+
+
+-----------
+
+### src/Enterprise/FizzBuzz.hs
+
+    
+    screenshot
+
 
 -----------
 
@@ -398,26 +416,74 @@ Some set flags or tokens.
 #### What does _cabal build_ do?
 * Runs cabal configure with most recently used options.
 * Creates dist/build
-* Builds the package and puts it in ./dist/build/fizzbuzz
+* Builds the package and puts it in dist/build/enterpriseFizzBuzz/enterpriseFizzBuzz
 
 -----------
 
-### How can I run my tests?
+### What happens when I run it?
+    $ cabal configure && cabal build
+    $ ./dist/build/enterpriseFizzBuzz/enterpriseFizzBuzz
+	How many numbers should I FizzBuzz.
+	4
+	enterpriseFizzBuzz: Prelude.undefined
+
+-----------
+
+#### How do I go about testing my code?
+### test-framework
+
+* Test in parallel 
+* Report in deterministic order
+* Supports Unit as well as Invariant tests
+
+**** may remove
+
+* Add your own test providers above and beyond those provided.
+* Reports failing seeds for QuickCheck
+
+-----------
+
+### HUnit
+* HUnit is an adaptation of JUnit
+* Use test-framework-hunit provider
+* More description
+
+-----------
+
+### test-suite/unit/Enterprise/Tests.hs
+
+    screenshot
+
+-----------
+
+### Run it with _cabal test_!
+
+  
     $ cabal configure --enable-tests && cabal build && cabal test
     $ cabal configure --disable-tests && cabal build
+
+
+* do the test-suite deps get added to the build if not enabled?
+
+-----------
+
+### QuickCheck if i have time
+* blah
+* blah
+* blah
 
 -----------
 
 ### How can I run my benchmarks?
+    
     $ cabal configure --enable-benchmarks && cabal build && cabal bench
     $ cabal configure --disable-benchmarks && cabal build
 
 -----------
 
-### Generate Some Documentation via _cabal haddock_
-* Generates some nicely formatted html.
-* Documentation created: dist/doc/html/fizzbuzz/fizzbuzz/index.html
-* This is another option when exploring the api of a library found on hackage.
+### Enjoying the nice html output.
+
+     $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html
 
 -----------
 
@@ -444,6 +510,16 @@ Some set flags or tokens.
 ![](./img/cabal_end.jpg)
 
 -----------
+
+-----------
+
+.
+
+
+-----------
+
+“Languages flourish when libraries are plentiful, reliable, and well documented.” - Simon Peyton Jones
+
 ### Extending Cabal
 
 
@@ -451,8 +527,17 @@ Some set flags or tokens.
 
 * Uses Setup.hs or Setup.lhs.
 * TODO - Custom build and setup.hs
-
+* look at darcs
 ### Define your own task API?
+
+--------
+
+### QuickCheck if i have time
+* blah
+* blah
+* blah
+
+-----------
 
 
 ### detailed (may not be available yet)
