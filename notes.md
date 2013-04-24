@@ -66,6 +66,8 @@ _cabal update_
 * This will download the most recent list of packages.
 * Where is it downloading this list from?
 
+**Run it anywhere**
+
 -----------
 
 ### Take a look at the output.
@@ -98,6 +100,8 @@ _cabal update_
           License:  BSD3
       Top level overview of the package available
 
+**Run it anywhere**
+
 -----------
 
 ### Cabal lets you know...
@@ -118,10 +122,13 @@ _cabal install_
 =========
 
 #### It does lots of work for you.
+**Give it a package name from the list**
 
 * Grabs the Library's Dependencies.
 * Grabs the Library you specified.
 * Build, compiles, installs, registers, generates docs...
+* Installs library in a common place
+* Installs executable(s) in a common place
 
 -----------
 
@@ -152,10 +159,14 @@ _cabal install_
 
 Take a look at the Source.
 =========
+
 ### Get your hands dirty with _cabal unpack_.
+
 * This simply Downloads the package from Hackage
 * Creates a versioned directory
 * And drops the source code right there.
+
+**Run it somwhere for source code**
 
 -----------      
 
@@ -170,14 +181,18 @@ Take a look at the Source.
 -----------
 
 ### Generate some documentation via _cabal haddock_.
+
 * Generates some nicely formatted html
 * Documentation created: dist/doc/html/fizzbuzz/fizzbuzz/index.html
 * This is another option when exploring the api of a library found on hackage.
+
+**Run it from the root of the package**
 
 -----------
 
 Develop All the Packages
 =========
+
 ### Commands to guide development
     * init
     * configure
@@ -194,11 +209,14 @@ What does "cabal init" do?
 =========
 
 #### An interactive command that aids in the generation of a .cabal file
+
 * Guesses at obvious descriptors - name, version, author, maintainer...
 * Gives some common options for the necessary fields 
 * Generates a template LICENSE for you.
 * Adds a specified Section - Library or Executable
 * Adds descriptions and TODOs to the .cabal file
+
+**Run it from a new dir**
 
 -----------
 
@@ -340,11 +358,16 @@ What does "cabal init" do?
 .cabal Sections
 =========
 
+### Defining the code's structure and build
+* Defines individual targets for cabal to build
+* Provides a description of how to build the target
+* Describes your code's [structure](http://www.haskell.org/haskellwiki/Structure_of_a_Haskell_project)
+
 ### Library Section
 
 **Requires Exposed-Modules**
 
-Describes modules exposed to the package's consumer
+Describes modules exposed internal to this package and to the package's consumer
 
     library
       build-depends:
@@ -353,16 +376,18 @@ Describes modules exposed to the package's consumer
       other-modules:
         EnterpriseFizzBuzz.HiddenStuff
       
+      -- Adding .hs to the end will fail on configuration.
       exposed-modules:  
           EnterpriseFizzBuzz.Fizz
-        , EnterpriseFizzBuzz.Buzz
         , EnterpriseFizzBuzz.FizzBuzz
+
+There can be only one
 
 -----------
 
 ### Executable Section
 
-**Requires Main-Is, Unique Identifier** 
+**Requires Unique Identifier, Main-Is** 
 
 Describes an executable runnable from the command line
 
@@ -375,13 +400,15 @@ Describes an executable runnable from the command line
       -- alternatively 
       -- main-is:     src/Main.hs
 
+Can define more than one
+
 -----------
 
 ### Test-Suite Section
 
-**Requires Unique Identifier, Main-Is, Type** 
+**Requires Unique Identifier, Main-Is, Type, Package Identifier** 
 
-Executable that indicates failure with a non-zero exit code.
+Executable that indicates failure with a non-zero exit code
 
     test-suite enterpriseUnit
       build-depends:     base ==4.5.*
@@ -395,11 +422,15 @@ Executable that indicates failure with a non-zero exit code.
       type:              exitcode-stdio-1.0
       main-is:           Enterprise/FizzBuzzUnitTests.hs
 
+Can define more than one.
+
 -----------
 
 ### Benchmark Section
 
-**Requires Unique Identifier, Main-Is, Type** 
+**Requires Unique Identifier, Main-Is, Type, Package Identifier** 
+
+Very much like the test-suite section
     
     benchmark enterpriseBench
       build-depends:     base ==4.5.*
@@ -410,6 +441,8 @@ Executable that indicates failure with a non-zero exit code.
     
       type:              exitcode-stdio-1.0
       main-is:           Enterprise/FizzBuzzBenchmarks.hs
+
+Can define more than one.
 
 -----------
 
@@ -426,11 +459,19 @@ Write a program that prints the numbers from 1 to 100. But for multiples of thre
 
 -----------
 
-### Simple Main
+### Simple Main for FizzBuzz
 
 **src/Main.hs**
 
-![](./img/main.jpg)
+![](./img/main.png)
+
+-----------
+
+### Another Main for FizzBuzzing Single Numbers
+
+**src/SingleMain.hs**
+
+![](./img/singleMain.png)
 
 -----------
 
@@ -438,7 +479,7 @@ Write a program that prints the numbers from 1 to 100. But for multiples of thre
 
 **src/Enterprise/FizzBuzz.hs**
 
-![](./img/libUndefined.jpg)
+![](./img/libUndefined.png)
 
 -----------
 
@@ -447,19 +488,23 @@ Run All the Code
 
 ### What does "cabal configure" do?
 
-**Prepares to build the package**
-
+* Prepares to build the package
 * Looks for available packages
 * Tries to resolve dependencies
 * Decides which tools to use
 * Tells which dependencies aren't available
+
+**Run it from the root of the package**
     
 -----------
 
 ### What does "cabal build" do?
+
 * Runs cabal configure with most recently used options.
 * Creates dist/build
 * Builds the package and puts it in dist/build/enterpriseFizzBuzz/enterpriseFizzBuzz
+
+**Run it from the root of the package**
 
 -----------
 
@@ -479,20 +524,19 @@ Test All the Code
 **A test framework for combining tests made using QuickCheck and HUnit and much more…**
 
 * Test in parallel
-* Report in deterministic order
+* Report in deterministic order (same input, same output)
 * Supports Unit as well as Invariant tests via Providers
 * Supports test grouping and assertions
-* Reports failing seeds for QuickCheck
 
 -----------
 
 ### Unit Testing with HUnit
-
 * HUnit is an adaptation of JUnit 
 * Provides functions for writing Assertions
 * Assertions are types that on failure will output a message
 
-**Some assertion functions**
+
+### Some functions for generating assertions
 
     assertEqual :: (Eq a, Show a) => String -> a -> a -> Assertion
     
@@ -524,20 +568,23 @@ Test Framework groups the tests
 
 ### Run it with _cabal test_.
 
-**Pass configure flags to enable test building**
+Pass configure flags to enable test building
  
     $ cabal configure --enable-tests && cabal build && cabal test
-    $ cabal configure --disable-tests && cabal build
-
------------
-
-### Test will report your errors…
+    
+Test will report your error
 
     Running 1 test suites...
     Test suite enterpriseUnit: RUNNING...
     Fizz Buzz Unit Test Cases:
       should return empty string: [Failed]
     ERROR: Prelude.undefined 
+
+Pass configure flags to disable test building
+
+    $ cabal configure --disable-tests && cabal build
+
+**Run it from the root of the package**
 
 -----------
 
@@ -568,24 +615,47 @@ Test Framework groups the tests
 
 -----------
 
+Install the Code
+=========
+
+### Using _cabal install_.
+
+    $ cabal install 
+    Resolving dependencies...
+    Configuring enterpriseFizzBuzz-0.1.0.0...
+    ...
+    Registering enterpriseFizzBuzz-0.1.0.0...
+    Installed enterpriseFizzBuzz-0.1.0.0
+    Updating documentation index /Users/jhawkins/Library/Haskell/doc/index.html
+
+**Run it from the root of the package**
+
+-----------
+
+### Run the executables via the command line.
+**Add the bin directory to your path**
+PATH="$HOME/Library/Haskell/bin:$PATH"
+
+    $ singleFizzBuzz 
+    Which number should I FizzBuzz?
+    3
+    "Fizz"
+
+-----------
+
 Benchmark the Code
 =========
 
-### Confidence in Code Performance
+### Criterion for Confidence
 
-* Easy to build and run benchmarks for code confidence 
-* Provides easy to use functions for constructing Benchmarks and grouping them
+* Easy to write, build and run benchmarks
 * Provides benchmarking for both IO actions and Pure functions
 * Provides some nice graphs for further inspection
+* Provides easy to use functions for constructing Benchmarks and grouping them
 
 -----------
 
 ### Constructing a Benchmark
-
-    run :: a -> Int -> IO ()
-    
-    bench  :: Benchmarkable b => String -> b -> Benchmark
-	bgroup :: String -> [Benchmark] -> Benchmark
 
 * Benchmarks are one or many Benchmarkables
 * Benchmarkables have a single method run
@@ -593,19 +663,22 @@ Benchmark the Code
 * Function bench generates a Benchmark
 * Function bgroup groups Benchmarks together
 
+Some signatures
+
+    run :: a -> Int -> IO ()
+    bench  :: Benchmarkable b => String -> b -> Benchmark
+	bgroup :: String -> [Benchmark] -> Benchmark
+
 -----------
 
 ### Creating a Pure Benchmarkable
+* nf   = fully evaluated
+* whnf = evaluated to the outermost data constructor
 
 **Important to ensure your code gets evaluated**
 
-Evaluates results to normal form or weak head normal form
-
     nf   :: NFData b => (a -> b) -> a -> Pure
     whnf :: (a -> b) -> a -> Pure
-
-* nf   = fully evaluated
-* whnf = evaluated to the outermost data constructor
 
 -----------
 
@@ -617,14 +690,22 @@ Evaluates results to normal form or weak head normal form
 
 ### Run it with _cabal bench_.
 
-**Pass configure flags to enable benchmark building**
-
+Pass configure flags to enable benchmark building
+ 
     $ cabal configure --enable-bench && cabal build && cabal bench
+    
+Pass configure flags to disable benchmark building
+
     $ cabal configure --disable-bench && cabal build
+
+**Run it from the root of the package**
 
 -----------
 
-### Some output from our Benchmarks
+### Printed from the command line
+* Useful when doing automated checks
+* Descriptive about outliers
+* Tells the mean and standard deviation
 
     benchmarking fizzBuzz head normal form/100
 	mean: 84.94579 ns, lb 84.61875 ns, ub 85.26468 ns, ci 0.950
@@ -636,6 +717,17 @@ Evaluates results to normal form or weak head normal form
     variance introduced by outliers: 12.306%
     variance is moderately inflated by outliers
 
+-----------
+
+### Better visualization of results
+
+* Plots a histogram of the samples run
+* Smartly interprets how to group the data
+* Makes the outliers obvious
+* Impresses your boss
+
+To generate some html output 
+
     $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html
 	
 Now we can open [some nice charts](file:///Users/jhawkins/Documents/talk/enterpriseFizzBuzz/enterpriseBench.html) in our favorite browser.
@@ -645,11 +737,30 @@ Now we can open [some nice charts](file:///Users/jhawkins/Documents/talk/enterpr
 Release All the Code
 =========
 
+### Some commands for preparing and uploading packages.
+
+	* haddock (again) 
+    * sdist
+    * upload
+
+-----------
+
+### Generate some docs with _cabal haddock_.
+
+* Special commenting for better docs
+* Take a look at the [documentation](file://localhost/Users/jhawkins/Documents/talk/enterpriseFizzBuzz/dist/doc/html/enterpriseFizzBuzz/index.html)
+
+**Run it from the root of the package**
+
+-----------
+
 ### Generate a source distribution file with _cabal sdist_.
 
 * Building source dist for fizzbuzz-0.1.0.0...
 * Preprocessing executable 'fizzbuzz' for fizzbuzz-0.1.0.0...
 * Source tarball created: dist/fizzbuzz-0.1.0.0.tar.gz
+
+**Run it from the root of the package**
 
 -----------
 
@@ -673,10 +784,14 @@ Release All the Code
 
 **Requires a Hackage username and password**
 
+Pass the path to the tar
+
     $ cabal upload dist/enterpriseFizzBuzz-0.1.0.0.tar.gz 
     Hackage username: 
     Hackage password: 
     Uploading dist/enterpriseFizzBuzz-0.1.0.0.tar.gz...
+
+**Run it from the root of the package**
 
 -----------
 

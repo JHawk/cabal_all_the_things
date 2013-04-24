@@ -126,6 +126,7 @@
 <li>This will download the most recent list of packages.</li>
 <li>Where is it downloading this list from?</li>
 </ul>
+<p><strong>Run it anywhere</strong></p>
 <hr />
 </section>
 <section id="take-a-look-at-the-output." class="level3">
@@ -156,6 +157,7 @@
       Installed versions: [ Not installed ]
       License:  BSD3
   Top level overview of the package available</code></pre>
+<p><strong>Run it anywhere</strong></p>
 <hr />
 </section>
 <section id="cabal-lets-you-know..." class="level3">
@@ -173,10 +175,13 @@ Run &#39;cabal update&#39; to get the latest list of available packages.</code><
 <h1><em>cabal install</em></h1>
 <section id="it-does-lots-of-work-for-you." class="level4">
 <h4>It does lots of work for you.</h4>
+<p><strong>Give it a package name from the list</strong></p>
 <ul>
 <li>Grabs the Library's Dependencies.</li>
 <li>Grabs the Library you specified.</li>
 <li>Build, compiles, installs, registers, generates docs...</li>
+<li>Installs library in a common place</li>
+<li>Installs executable(s) in a common place</li>
 </ul>
 <hr />
 </section>
@@ -213,6 +218,7 @@ Updating documentation index /Users/jhawkins/Library/Haskell/doc/index.html</cod
 <li>Creates a versioned directory</li>
 <li>And drops the source code right there.</li>
 </ul>
+<p><strong>Run it somwhere for source code</strong></p>
 <hr />
 </section>
 <section id="some-example-output-1" class="level3">
@@ -231,6 +237,7 @@ Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.</code
 <li>Documentation created: dist/doc/html/fizzbuzz/fizzbuzz/index.html</li>
 <li>This is another option when exploring the api of a library found on hackage.</li>
 </ul>
+<p><strong>Run it from the root of the package</strong></p>
 <hr />
 </section>
 </section>
@@ -259,6 +266,7 @@ Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.</code
 <li>Adds a specified Section - Library or Executable</li>
 <li>Adds descriptions and TODOs to the .cabal file</li>
 </ul>
+<p><strong>Run it from a new dir</strong></p>
 <hr />
 </section>
 <section id="some-example-prompts" class="level3">
@@ -389,10 +397,18 @@ else
 </section>
 <section id="cabal-sections" class="level1">
 <h1>.cabal Sections</h1>
+<section id="defining-the-codes-structure-and-build" class="level3">
+<h3>Defining the code's structure and build</h3>
+<ul>
+<li>Defines individual targets for cabal to build</li>
+<li>Provides a description of how to build the target</li>
+<li>Describes your code's <a href="http://www.haskell.org/haskellwiki/Structure_of_a_Haskell_project">structure</a></li>
+</ul>
+</section>
 <section id="library-section" class="level3">
 <h3>Library Section</h3>
 <p><strong>Requires Exposed-Modules</strong></p>
-<p>Describes modules exposed to the package's consumer</p>
+<p>Describes modules exposed internal to this package and to the package's consumer</p>
 <pre><code>library
   build-depends:
     base         &gt;= 4 &amp;&amp; &lt;= 5 
@@ -400,15 +416,16 @@ else
   other-modules:
     EnterpriseFizzBuzz.HiddenStuff
   
+  -- Adding .hs to the end will fail on configuration.
   exposed-modules:  
       EnterpriseFizzBuzz.Fizz
-    , EnterpriseFizzBuzz.Buzz
     , EnterpriseFizzBuzz.FizzBuzz</code></pre>
+<p>There can be only one</p>
 <hr />
 </section>
 <section id="executable-section" class="level3">
 <h3>Executable Section</h3>
-<p><strong>Requires Main-Is, Unique Identifier</strong></p>
+<p><strong>Requires Unique Identifier, Main-Is</strong></p>
 <p>Describes an executable runnable from the command line</p>
 <pre><code>executable enterpriseFizzBuzz
   build-depends:     base ==4.5.*
@@ -418,12 +435,13 @@ else
   
   -- alternatively 
   -- main-is:     src/Main.hs</code></pre>
+<p>Can define more than one</p>
 <hr />
 </section>
 <section id="test-suite-section" class="level3">
 <h3>Test-Suite Section</h3>
-<p><strong>Requires Unique Identifier, Main-Is, Type</strong></p>
-<p>Executable that indicates failure with a non-zero exit code.</p>
+<p><strong>Requires Unique Identifier, Main-Is, Type, Package Identifier</strong></p>
+<p>Executable that indicates failure with a non-zero exit code</p>
 <pre><code>test-suite enterpriseUnit
   build-depends:     base ==4.5.*
                    , HUnit
@@ -435,11 +453,13 @@ else
 
   type:              exitcode-stdio-1.0
   main-is:           Enterprise/FizzBuzzUnitTests.hs</code></pre>
+<p>Can define more than one.</p>
 <hr />
 </section>
 <section id="benchmark-section" class="level3">
 <h3>Benchmark Section</h3>
-<p><strong>Requires Unique Identifier, Main-Is, Type</strong></p>
+<p><strong>Requires Unique Identifier, Main-Is, Type, Package Identifier</strong></p>
+<p>Very much like the test-suite section</p>
 <pre><code>benchmark enterpriseBench
   build-depends:     base ==4.5.*
                    , criterion
@@ -449,6 +469,7 @@ else
 
   type:              exitcode-stdio-1.0
   main-is:           Enterprise/FizzBuzzBenchmarks.hs</code></pre>
+<p>Can define more than one.</p>
 <hr />
 </section>
 <section id="look-at-a-complete-.cabal-file." class="level3">
@@ -463,11 +484,19 @@ else
 <p>Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.</p>
 <hr />
 </section>
-<section id="simple-main" class="level3">
-<h3>Simple Main</h3>
+<section id="simple-main-for-fizzbuzz" class="level3">
+<h3>Simple Main for FizzBuzz</h3>
 <p><strong>src/Main.hs</strong></p>
 <figure>
-<img src="./img/main.jpg" />
+<img src="./img/main.png" />
+</figure>
+<hr />
+</section>
+<section id="another-main-for-fizzbuzzing-single-numbers" class="level3">
+<h3>Another Main for FizzBuzzing Single Numbers</h3>
+<p><strong>src/SingleMain.hs</strong></p>
+<figure>
+<img src="./img/singleMain.png" />
 </figure>
 <hr />
 </section>
@@ -475,7 +504,7 @@ else
 <h3>Stub Module in Library</h3>
 <p><strong>src/Enterprise/FizzBuzz.hs</strong></p>
 <figure>
-<img src="./img/libUndefined.jpg" />
+<img src="./img/libUndefined.png" />
 </figure>
 <hr />
 </section>
@@ -484,13 +513,14 @@ else
 <h1>Run All the Code</h1>
 <section id="what-does-cabal-configure-do" class="level3">
 <h3>What does &quot;cabal configure&quot; do?</h3>
-<p><strong>Prepares to build the package</strong></p>
 <ul>
+<li>Prepares to build the package</li>
 <li>Looks for available packages</li>
 <li>Tries to resolve dependencies</li>
 <li>Decides which tools to use</li>
 <li>Tells which dependencies aren't available</li>
 </ul>
+<p><strong>Run it from the root of the package</strong></p>
 <hr />
 </section>
 <section id="what-does-cabal-build-do" class="level3">
@@ -500,6 +530,7 @@ else
 <li>Creates dist/build</li>
 <li>Builds the package and puts it in dist/build/enterpriseFizzBuzz/enterpriseFizzBuzz</li>
 </ul>
+<p><strong>Run it from the root of the package</strong></p>
 <hr />
 </section>
 <section id="what-happens-when-i-run-it" class="level3">
@@ -519,10 +550,9 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 <p><strong>A test framework for combining tests made using QuickCheck and HUnit and much more…</strong></p>
 <ul>
 <li>Test in parallel</li>
-<li>Report in deterministic order</li>
+<li>Report in deterministic order (same input, same output)</li>
 <li>Supports Unit as well as Invariant tests via Providers</li>
 <li>Supports test grouping and assertions</li>
-<li>Reports failing seeds for QuickCheck</li>
 </ul>
 <hr />
 </section>
@@ -533,7 +563,9 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 <li>Provides functions for writing Assertions</li>
 <li>Assertions are types that on failure will output a message</li>
 </ul>
-<p><strong>Some assertion functions</strong></p>
+</section>
+<section id="some-functions-for-generating-assertions" class="level3">
+<h3>Some functions for generating assertions</h3>
 <pre><code>assertEqual :: (Eq a, Show a) =&gt; String -&gt; a -&gt; a -&gt; Assertion
 
 (@=?) :: (Eq a, Show a) =&gt; a -&gt; a -&gt; Assertion
@@ -560,18 +592,17 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 </section>
 <section id="run-it-with-cabal-test." class="level3">
 <h3>Run it with <em>cabal test</em>.</h3>
-<p><strong>Pass configure flags to enable test building</strong></p>
-<pre><code>$ cabal configure --enable-tests &amp;&amp; cabal build &amp;&amp; cabal test
-$ cabal configure --disable-tests &amp;&amp; cabal build</code></pre>
-<hr />
-</section>
-<section id="test-will-report-your-errors" class="level3">
-<h3>Test will report your errors…</h3>
+<p>Pass configure flags to enable test building</p>
+<pre><code>$ cabal configure --enable-tests &amp;&amp; cabal build &amp;&amp; cabal test</code></pre>
+<p>Test will report your error</p>
 <pre><code>Running 1 test suites...
 Test suite enterpriseUnit: RUNNING...
 Fizz Buzz Unit Test Cases:
   should return empty string: [Failed]
 ERROR: Prelude.undefined </code></pre>
+<p>Pass configure flags to disable test building</p>
+<pre><code>$ cabal configure --disable-tests &amp;&amp; cabal build</code></pre>
+<p><strong>Run it from the root of the package</strong></p>
 <hr />
 </section>
 <section id="lets-make-them-pass" class="level3">
@@ -602,24 +633,44 @@ Test suite logged to: dist/test/enterpriseFizzBuzz-0.1.0.0-enterpriseUnit.log
 <hr />
 </section>
 </section>
+<section id="install-the-code" class="level1">
+<h1>Install the Code</h1>
+<section id="using-cabal-install." class="level3">
+<h3>Using <em>cabal install</em>.</h3>
+<pre><code>$ cabal install 
+Resolving dependencies...
+Configuring enterpriseFizzBuzz-0.1.0.0...
+...
+Registering enterpriseFizzBuzz-0.1.0.0...
+Installed enterpriseFizzBuzz-0.1.0.0
+Updating documentation index /Users/jhawkins/Library/Haskell/doc/index.html</code></pre>
+<p><strong>Run it from the root of the package</strong></p>
+<hr />
+</section>
+<section id="run-the-executables-via-the-command-line." class="level3">
+<h3>Run the executables via the command line.</h3>
+<p><strong>Add the bin directory to your path</strong> PATH=&quot;<span class="math"><em>H</em><em>O</em><em>M</em><em>E</em> / <em>L</em><em>i</em><em>b</em><em>r</em><em>a</em><em>r</em><em>y</em> / <em>H</em><em>a</em><em>s</em><em>k</em><em>e</em><em>l</em><em>l</em> / <em>b</em><em>i</em><em>n</em>: </span>PATH&quot;</p>
+<pre><code>$ singleFizzBuzz 
+Which number should I FizzBuzz?
+3
+&quot;Fizz&quot;</code></pre>
+<hr />
+</section>
+</section>
 <section id="benchmark-the-code" class="level1">
 <h1>Benchmark the Code</h1>
-<section id="confidence-in-code-performance" class="level3">
-<h3>Confidence in Code Performance</h3>
+<section id="criterion-for-confidence" class="level3">
+<h3>Criterion for Confidence</h3>
 <ul>
-<li>Easy to build and run benchmarks for code confidence</li>
-<li>Provides easy to use functions for constructing Benchmarks and grouping them</li>
+<li>Easy to write, build and run benchmarks</li>
 <li>Provides benchmarking for both IO actions and Pure functions</li>
 <li>Provides some nice graphs for further inspection</li>
+<li>Provides easy to use functions for constructing Benchmarks and grouping them</li>
 </ul>
 <hr />
 </section>
 <section id="constructing-a-benchmark" class="level3">
 <h3>Constructing a Benchmark</h3>
-<pre><code>run :: a -&gt; Int -&gt; IO ()
-
-bench  :: Benchmarkable b =&gt; String -&gt; b -&gt; Benchmark
-bgroup :: String -&gt; [Benchmark] -&gt; Benchmark</code></pre>
 <ul>
 <li>Benchmarks are one or many Benchmarkables</li>
 <li>Benchmarkables have a single method run</li>
@@ -627,18 +678,21 @@ bgroup :: String -&gt; [Benchmark] -&gt; Benchmark</code></pre>
 <li>Function bench generates a Benchmark</li>
 <li>Function bgroup groups Benchmarks together</li>
 </ul>
+<p>Some signatures</p>
+<pre><code>run :: a -&gt; Int -&gt; IO ()
+bench  :: Benchmarkable b =&gt; String -&gt; b -&gt; Benchmark
+bgroup :: String -&gt; [Benchmark] -&gt; Benchmark</code></pre>
 <hr />
 </section>
 <section id="creating-a-pure-benchmarkable" class="level3">
 <h3>Creating a Pure Benchmarkable</h3>
-<p><strong>Important to ensure your code gets evaluated</strong></p>
-<p>Evaluates results to normal form or weak head normal form</p>
-<pre><code>nf   :: NFData b =&gt; (a -&gt; b) -&gt; a -&gt; Pure
-whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
 <ul>
 <li>nf = fully evaluated</li>
 <li>whnf = evaluated to the outermost data constructor</li>
 </ul>
+<p><strong>Important to ensure your code gets evaluated</strong></p>
+<pre><code>nf   :: NFData b =&gt; (a -&gt; b) -&gt; a -&gt; Pure
+whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
 <hr />
 </section>
 <section id="some-benchmarks" class="level3">
@@ -650,30 +704,55 @@ whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
 </section>
 <section id="run-it-with-cabal-bench." class="level3">
 <h3>Run it with <em>cabal bench</em>.</h3>
-<p><strong>Pass configure flags to enable benchmark building</strong></p>
-<pre><code>$ cabal configure --enable-bench &amp;&amp; cabal build &amp;&amp; cabal bench
-$ cabal configure --disable-bench &amp;&amp; cabal build</code></pre>
+<p>Pass configure flags to enable benchmark building</p>
+<pre><code>$ cabal configure --enable-bench &amp;&amp; cabal build &amp;&amp; cabal bench</code></pre>
+<p>Pass configure flags to disable benchmark building</p>
+<pre><code>$ cabal configure --disable-bench &amp;&amp; cabal build</code></pre>
+<p><strong>Run it from the root of the package</strong></p>
 <hr />
 </section>
-<section id="some-output-from-our-benchmarks" class="level3">
-<h3>Some output from our Benchmarks</h3>
-<pre><code>benchmarking fizzBuzz head normal form/100
-mean: 84.94579 ns, lb 84.61875 ns, ub 85.26468 ns, ci 0.950
-std dev: 1.656436 ns, lb 1.389480 ns, ub 2.029530 ns, ci 0.950
-found 8 outliers among 100 samples (8.0%)
-  3 (3.0%) low mild
-  4 (4.0%) high mild
-  1 (1.0%) high severe
-variance introduced by outliers: 12.306%
-variance is moderately inflated by outliers
-
-$ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></pre>
+<section id="printed-from-the-command-line" class="level3">
+<h3>Printed from the command line</h3>
+<ul>
+<li>Useful when doing automated checks</li>
+<li>Descriptive about outliers</li>
+<li><p>Tells the mean and standard deviation</p>
+<p>benchmarking fizzBuzz head normal form/100 mean: 84.94579 ns, lb 84.61875 ns, ub 85.26468 ns, ci 0.950 std dev: 1.656436 ns, lb 1.389480 ns, ub 2.029530 ns, ci 0.950 found 8 outliers among 100 samples (8.0%) 3 (3.0%) low mild 4 (4.0%) high mild 1 (1.0%) high severe variance introduced by outliers: 12.306% variance is moderately inflated by outliers</p></li>
+</ul>
+<hr />
+</section>
+<section id="better-visualization-of-results" class="level3">
+<h3>Better visualization of results</h3>
+<ul>
+<li>Plots a histogram of the samples run</li>
+<li>Smartly interprets how to group the data</li>
+<li>Makes the outliers obvious</li>
+<li>Impresses your boss</li>
+</ul>
+<p>To generate some html output</p>
+<pre><code>$ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></pre>
 <p>Now we can open <a href="file:///Users/jhawkins/Documents/talk/enterpriseFizzBuzz/enterpriseBench.html">some nice charts</a> in our favorite browser.</p>
 <hr />
 </section>
 </section>
 <section id="release-all-the-code" class="level1">
 <h1>Release All the Code</h1>
+<section id="some-commands-for-preparing-and-uploading-packages." class="level3">
+<h3>Some commands for preparing and uploading packages.</h3>
+<pre><code>* haddock (again) 
+* sdist
+* upload</code></pre>
+<hr />
+</section>
+<section id="generate-some-docs-with-cabal-haddock." class="level3">
+<h3>Generate some docs with <em>cabal haddock</em>.</h3>
+<ul>
+<li>Special commenting for better docs</li>
+<li>Take a look at the <a href="file://localhost/Users/jhawkins/Documents/talk/enterpriseFizzBuzz/dist/doc/html/enterpriseFizzBuzz/index.html">documentation</a></li>
+</ul>
+<p><strong>Run it from the root of the package</strong></p>
+<hr />
+</section>
 <section id="generate-a-source-distribution-file-with-cabal-sdist." class="level3">
 <h3>Generate a source distribution file with <em>cabal sdist</em>.</h3>
 <ul>
@@ -681,6 +760,7 @@ $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></p
 <li>Preprocessing executable 'fizzbuzz' for fizzbuzz-0.1.0.0...</li>
 <li>Source tarball created: dist/fizzbuzz-0.1.0.0.tar.gz</li>
 </ul>
+<p><strong>Run it from the root of the package</strong></p>
 <hr />
 </section>
 <section id="sample-output" class="level3">
@@ -701,10 +781,12 @@ Source tarball created: dist/enterpriseFizzBuzz-0.1.0.0.tar.gz</code></pre>
 <section id="for-those-who-want-to-give-back-cabal-upload." class="level3">
 <h3>For those who want to give back, <em>cabal upload</em>.</h3>
 <p><strong>Requires a Hackage username and password</strong></p>
+<p>Pass the path to the tar</p>
 <pre><code>$ cabal upload dist/enterpriseFizzBuzz-0.1.0.0.tar.gz 
 Hackage username: 
 Hackage password: 
 Uploading dist/enterpriseFizzBuzz-0.1.0.0.tar.gz...</code></pre>
+<p><strong>Run it from the root of the package</strong></p>
 <hr />
 </section>
 </section>
