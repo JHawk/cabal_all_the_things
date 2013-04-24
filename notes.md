@@ -530,6 +530,22 @@ Test Framework assembles a number of tests into a cohesive group
 
 -----------
 
+### Test will report your errors…
+
+    Running 1 test suites...
+    Test suite enterpriseUnit: RUNNING...
+    Fizz Buzz Unit Test Cases:
+      should return empty string: [Failed]
+    ERROR: Prelude.undefined 
+
+-----------
+
+### Lets make them pass!
+
+![](./img/libImpl.png)
+
+-----------
+
 ### Some output from our Test Suite
 
     Test suite enterpriseUnit: RUNNING...
@@ -580,6 +596,8 @@ Criterion the Code
 
 ### Creating a Pure Benchmarkable
 
+**Important to ensure your code gets evaluated**
+
 Evaluates results to normal form or weak head normal form
 
     nf   :: NFData b => (a -> b) -> a -> Pure
@@ -587,8 +605,6 @@ Evaluates results to normal form or weak head normal form
 
 * nf   = fully evaluated
 * whnf = evaluated to the outermost data constructor
-
-It's important to ensure your code gets evaluated
 
 -----------
 
@@ -621,19 +637,17 @@ It's important to ensure your code gets evaluated
 
 -----------
 
-### Enjoying the nice html output.
+### Enjoy Criterion's charts
 
-     $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html
-
+    $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html
+	
+Now we can open [some nice charts](file:///Users/jhawkins/Documents/talk/enterpriseFizzBuzz/enterpriseBench.html) in our favorite browser.
+	 
 -----------
 
-### Enjoying the nice html output.
+Release All the Code
+=========
 
-     $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html
-
------------
-
-### How do I get this code out the door?
 ### _cabal sdist_
 * Building source dist for fizzbuzz-0.1.0.0...
 * Preprocessing executable 'fizzbuzz' for fizzbuzz-0.1.0.0...

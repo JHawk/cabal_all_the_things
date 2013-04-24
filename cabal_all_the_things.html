@@ -567,6 +567,22 @@ $ cabal configure --disable-tests &amp;&amp; cabal build</code></pre>
 </ul>
 <hr />
 </section>
+<section id="test-will-report-your-errors" class="level3">
+<h3>Test will report your errors…</h3>
+<pre><code>Running 1 test suites...
+Test suite enterpriseUnit: RUNNING...
+Fizz Buzz Unit Test Cases:
+  should return empty string: [Failed]
+ERROR: Prelude.undefined </code></pre>
+<hr />
+</section>
+<section id="lets-make-them-pass" class="level3">
+<h3>Lets make them pass!</h3>
+<figure>
+<img src="./img/libImpl.png" />
+</figure>
+<hr />
+</section>
 <section id="some-output-from-our-test-suite" class="level3">
 <h3>Some output from our Test Suite</h3>
 <pre><code>Test suite enterpriseUnit: RUNNING...
@@ -617,6 +633,7 @@ bgroup :: String -&gt; [Benchmark] -&gt; Benchmark</code></pre>
 </section>
 <section id="creating-a-pure-benchmarkable" class="level3">
 <h3>Creating a Pure Benchmarkable</h3>
+<p><strong>Important to ensure your code gets evaluated</strong></p>
 <p>Evaluates results to normal form or weak head normal form</p>
 <pre><code>nf   :: NFData b =&gt; (a -&gt; b) -&gt; a -&gt; Pure
 whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
@@ -624,7 +641,6 @@ whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
 <li>nf = fully evaluated</li>
 <li>whnf = evaluated to the outermost data constructor</li>
 </ul>
-<p>It's important to ensure your code gets evaluated</p>
 <hr />
 </section>
 <section id="some-benchmarks" class="level3">
@@ -634,54 +650,37 @@ whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
 </figure>
 <hr />
 </section>
-<section id="run-it-with-cabal-test-1" class="level3">
-<h3>Run it with &quot;cabal test&quot;!</h3>
-<pre><code>$ cabal configure --enable-tests &amp;&amp; cabal build &amp;&amp; cabal test
-$ cabal configure --disable-tests &amp;&amp; cabal build</code></pre>
+<section id="run-it-with-cabal-bench" class="level3">
+<h3>Run it with &quot;cabal bench&quot;!</h3>
+<pre><code>$ cabal configure --enable-bench &amp;&amp; cabal build &amp;&amp; cabal bench
+$ cabal configure --disable-bench &amp;&amp; cabal build</code></pre>
 <ul>
-<li>Do the test-suite deps get added to the build if not enabled?</li>
+<li>Do the bench deps get added to the build if not enabled?</li>
 </ul>
 <hr />
 </section>
-<section id="some-output-from-our-test-suite-1" class="level3">
-<h3>Some output from our Test Suite</h3>
-<pre><code>Test suite enterpriseUnit: RUNNING...
-showing a fizzbuzz fail:
-  should fail: [Failed]
-expected: &quot;not here&quot;
-  but got: &quot;Buzz&quot;
-showing fizzbuzz pass:
-  should return 1: [OK]
-  should return Fizz: [OK]
-
-         Test Cases  Total      
- Passed  2           2          
- Failed  1           1          
- Total   3           3          
-Test suite enterpriseUnit: FAIL
-Test suite logged to: dist/test/enterpriseFizzBuzz-0.1.0.0-enterpriseUnit.log
-0 of 1 test suites (0 of 1 test cases) passed.</code></pre>
+<section id="some-output-from-our-benchmarks" class="level3">
+<h3>Some output from our Benchmarks</h3>
+<pre><code>benchmarking fizzBuzz head normal form/100
+mean: 84.94579 ns, lb 84.61875 ns, ub 85.26468 ns, ci 0.950
+std dev: 1.656436 ns, lb 1.389480 ns, ub 2.029530 ns, ci 0.950
+found 8 outliers among 100 samples (8.0%)
+  3 (3.0%) low mild
+  4 (4.0%) high mild
+  1 (1.0%) high severe
+variance introduced by outliers: 12.306%
+variance is moderately inflated by outliers</code></pre>
 <hr />
 </section>
-<section id="how-can-i-run-my-benchmarks" class="level3">
-<h3>How can I run my benchmarks?</h3>
-<pre><code>$ cabal configure --enable-benchmarks &amp;&amp; cabal build &amp;&amp; cabal bench
-$ cabal configure --disable-benchmarks &amp;&amp; cabal build</code></pre>
+<section id="enjoy-criterions-charts" class="level3">
+<h3>Enjoy Criterion's charts</h3>
+<pre><code>$ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></pre>
+<p>Now we can open <a href="file:///Users/jhawkins/Documents/talk/enterpriseFizzBuzz/enterpriseBench.html">some nice charts</a> in our favorite browser.</p>
 <hr />
 </section>
-<section id="enjoying-the-nice-html-output." class="level3">
-<h3>Enjoying the nice html output.</h3>
-<pre><code> $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></pre>
-<hr />
 </section>
-<section id="enjoying-the-nice-html-output.-1" class="level3">
-<h3>Enjoying the nice html output.</h3>
-<pre><code> $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></pre>
-<hr />
-</section>
-<section id="how-do-i-get-this-code-out-the-door" class="level3">
-<h3>How do I get this code out the door?</h3>
-</section>
+<section id="release-all-the-code" class="level1">
+<h1>Release All the Code</h1>
 <section id="cabal-sdist" class="level3">
 <h3><em>cabal sdist</em></h3>
 <ul>
