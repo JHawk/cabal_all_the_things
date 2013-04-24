@@ -166,7 +166,7 @@ Take a look at the Source.
 * Creates a versioned directory
 * And drops the source code right there.
 
-**Run it somwhere for source code**
+**Run it somewhere for source code**
 
 -----------      
 
