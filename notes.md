@@ -2,6 +2,9 @@
 
 Cabal All the Things: From Init to Testing to Dist
 -----------
+<br />
+<br />
+<br />
 
 Josh Hawkins
 
@@ -17,7 +20,6 @@ Shameless Promotion
 * Functional, strict, expressive, pure(ish), static(y), inferred, fast, fun
 * Strong like a gorilla, yet soft and yielding like a Nerf ball
 
------------
 
 ![](./img/cabal_start.jpg)
 -----------
@@ -29,7 +31,6 @@ Shameless Promotion
 * It describes what Haskell implementations support packages. 
 * It provides a way to express dependency on particular libraries, compilers, or versions. 
 
------------
 
 ### What is HackageDB?
 * It is the central repository of open-source Haskell software.
@@ -37,7 +38,6 @@ Shameless Promotion
 * It provides a clean web interface for viewing and searching existing libraries.
 * It provides links to dependencies.
 
------------
 
 ### What is Cabal-Install?
 * It's a command line interface for Cabal the Library.
@@ -45,7 +45,6 @@ Shameless Promotion
 * Package development - configuring, building, testing and benchmarking
 * Package sharing - packaging and uploading
 
------------
 
 Explore All the Packages
 =========
@@ -56,7 +55,6 @@ Explore All the Packages
 	* unpack
 	* haddock
 
------------
 
 _cabal update_
 =========
@@ -66,9 +64,10 @@ _cabal update_
 * This will download the most recent list of packages.
 * Where is it downloading this list from?
 
+<br />
+
 **Run it anywhere**
 
------------
 
 ### Take a look at the output.
 
@@ -87,7 +86,6 @@ _cabal update_
       Updating the index cache file...
       Reading available packages...
 
------------
 
 ### Lets try out _cabal list_.
 
@@ -99,10 +97,11 @@ _cabal update_
           Installed versions: [ Not installed ]
           License:  BSD3
       Top level overview of the package available
+      
+<br />
 
 **Run it anywhere**
 
------------
 
 ### Cabal lets you know...
 
@@ -116,7 +115,6 @@ _cabal update_
     Note: there is a new version of cabal-install available.
                 To upgrade, run: cabal install cabal-install
 
------------
 
 _cabal install_
 =========
@@ -130,7 +128,6 @@ _cabal install_
 * Installs library in a common place
 * Installs executable(s) in a common place
 
------------
 
 ### Some example output
 
@@ -142,7 +139,6 @@ _cabal install_
     Preprocessing library MonadCatchIO-transformers-0.3.0.0...
     [1 of 1] Compiling Control.Monad.CatchIO ( src/Control/Monad/CatchIO.hs, dist/build/Control/Monad/CatchIO.o )
 
------------
 
 ### Continued…
     
@@ -155,7 +151,6 @@ _cabal install_
     Installed snap-0.11.2.2
     Updating documentation index /Users/jhawkins/Library/Haskell/doc/index.html
 
------------      
 
 Take a look at the Source.
 =========
@@ -166,9 +161,10 @@ Take a look at the Source.
 * Creates a versioned directory
 * And drops the source code right there.
 
+<br />
+
 **Run it somewhere for source code**
 
------------      
 
 ### Some example output
 
@@ -178,7 +174,6 @@ Take a look at the Source.
     Unpacking to snap-0.11.2.2/
     Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.
 
------------
 
 ### Generate some documentation via _cabal haddock_.
 
@@ -186,9 +181,10 @@ Take a look at the Source.
 * Documentation created: dist/doc/html/fizzbuzz/fizzbuzz/index.html
 * This is another option when exploring the api of a library found on hackage.
 
+<br />
+
 **Run it from the root of the package**
 
------------
 
 Develop All the Packages
 =========
@@ -202,7 +198,6 @@ Develop All the Packages
     * sdist
     * upload
 
------------
 
 
 What does "cabal init" do?
@@ -216,9 +211,10 @@ What does "cabal init" do?
 * Adds a specified Section - Library or Executable
 * Adds descriptions and TODOs to the .cabal file
 
+<br />
+
 **Run it from a new dir**
 
------------
 
 ### Some example prompts
 
@@ -237,7 +233,6 @@ What does "cabal init" do?
       10) AllRightsReserved
       11) Other (specify)
 
------------
 
 ### Continued…
 
@@ -247,7 +242,6 @@ What does "cabal init" do?
     Your choice? 1
     Include documentation on what each field means (y/n)? [default: n] 
 
------------
 
 .cabal All the Fields
 =========
@@ -259,7 +253,6 @@ What does "cabal init" do?
 * Contains Flags
 * Contains the Core Sections of your Package
 
------------
 
 ### Top Level Description
 
@@ -281,8 +274,7 @@ What does "cabal init" do?
       type:     git
       location: https://github.com/JHawk/enterpriseFizzBuzz/
       subdir:   FizzBuzzLib
-    
------------
+
 
 ### Build Description
 
@@ -291,8 +283,7 @@ What does "cabal init" do?
 
     -- defines other files to be packaged and distributed
     extra-source-files: README bootstrap.sh
-        
------------
+
 
 ### A Few Common Package Build Fields
 
@@ -317,7 +308,6 @@ What does "cabal init" do?
     -- Some set flags or tokens
     ghc-options: -Wall -fwarn-tabs
 
------------
 
 ### Conditional Thingy
   
@@ -328,7 +318,6 @@ What does "cabal init" do?
       build-depends:
         bytestring >= 0.10.0 && <0.11
 
------------
 
 ### Define Your Own Conditional Thingy
 
@@ -350,7 +339,6 @@ What does "cabal init" do?
 
     $ cabal configure --flags=build-stuff
 
------------
 
 ![](./img/condThingy.jpg)
 -----------
@@ -383,7 +371,6 @@ Describes modules exposed internal to this package and to the package's consumer
 
 There can be only one
 
------------
 
 ### Executable Section
 
@@ -402,7 +389,6 @@ Describes an executable runnable from the command line
 
 Can define more than one
 
------------
 
 ### Test-Suite Section
 
@@ -424,7 +410,6 @@ Executable that indicates failure with a non-zero exit code
 
 Can define more than one.
 
------------
 
 ### Benchmark Section
 
@@ -444,11 +429,9 @@ Very much like the test-suite section
 
 Can define more than one.
 
------------
 
 ### Look at a Complete .cabal File.
 
------------
 
 Create All the Code
 =========
@@ -457,7 +440,6 @@ Create All the Code
 
 Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.
 
------------
 
 ### Simple Main for FizzBuzz
 
@@ -465,7 +447,6 @@ Write a program that prints the numbers from 1 to 100. But for multiples of thre
 
 ![](./img/main.png)
 
------------
 
 ### Another Main for FizzBuzzing Single Numbers
 
@@ -473,7 +454,6 @@ Write a program that prints the numbers from 1 to 100. But for multiples of thre
 
 ![](./img/singleMain.png)
 
------------
 
 ### Stub Module in Library
 
@@ -481,7 +461,6 @@ Write a program that prints the numbers from 1 to 100. But for multiples of thre
 
 ![](./img/libUndefined.png)
 
------------
 
 Run All the Code
 =========
@@ -494,9 +473,10 @@ Run All the Code
 * Decides which tools to use
 * Tells which dependencies aren't available
 
+<br />
+
 **Run it from the root of the package**
-    
------------
+
 
 ### What does "cabal build" do?
 
@@ -504,9 +484,10 @@ Run All the Code
 * Creates dist/build
 * Builds the package and puts it in dist/build/enterpriseFizzBuzz/enterpriseFizzBuzz
 
+<br />
+
 **Run it from the root of the package**
 
------------
 
 ### What happens when I run it?
     $ cabal configure && cabal build
@@ -515,7 +496,6 @@ Run All the Code
 	4
 	enterpriseFizzBuzz: Prelude.undefined
 
------------
 
 Test All the Code
 =========
@@ -528,7 +508,6 @@ Test All the Code
 * Supports Unit as well as Invariant tests via Providers
 * Supports test grouping and assertions
 
------------
 
 ### Unit Testing with HUnit
 * HUnit is an adaptation of JUnit 
@@ -547,7 +526,6 @@ Test All the Code
     (@?) :: AssertionPredicable t => t -> String -> Assertion
 
 
------------
 
 ### HUnit Provider and the Test Framework
 HUnit Provider generates a Test from an Assertion
@@ -558,13 +536,11 @@ Test Framework groups the tests
 
     testGroup :: TestName -> [Test] -> TestSource
 
------------
 
 ### A few HUnit tests
 
 ![](./img/tests.png)
 
------------
 
 ### Run it with _cabal test_.
 
@@ -583,16 +559,16 @@ Test will report your error
 Pass configure flags to disable test building
 
     $ cabal configure --disable-tests && cabal build
+    
+<br />
 
 **Run it from the root of the package**
 
------------
 
 ### Lets make them pass!
 
 ![](./img/libImpl.png)
 
------------
 
 ### Some output from our Test Suite
 
@@ -613,8 +589,6 @@ Pass configure flags to disable test building
     Test suite logged to: dist/test/enterpriseFizzBuzz-0.1.0.0-enterpriseUnit.log
     0 of 1 test suites (0 of 1 test cases) passed.
 
------------
-
 Install the Code
 =========
 
@@ -627,10 +601,11 @@ Install the Code
     Registering enterpriseFizzBuzz-0.1.0.0...
     Installed enterpriseFizzBuzz-0.1.0.0
     Updating documentation index /Users/jhawkins/Library/Haskell/doc/index.html
+    
+<br />
 
 **Run it from the root of the package**
 
------------
 
 ### Run the executables via the command line.
 **Add the bin directory to your path**
@@ -641,8 +616,6 @@ PATH="$HOME/Library/Haskell/bin:$PATH"
     3
     "Fizz"
 
------------
-
 Benchmark the Code
 =========
 
@@ -652,8 +625,6 @@ Benchmark the Code
 * Provides benchmarking for both IO actions and Pure functions
 * Provides some nice graphs for further inspection
 * Provides easy to use functions for constructing Benchmarks and grouping them
-
------------
 
 ### Constructing a Benchmark
 
@@ -669,8 +640,6 @@ Some signatures
     bench  :: Benchmarkable b => String -> b -> Benchmark
 	bgroup :: String -> [Benchmark] -> Benchmark
 
------------
-
 ### Creating a Pure Benchmarkable
 * nf   = fully evaluated
 * whnf = evaluated to the outermost data constructor
@@ -680,13 +649,11 @@ Some signatures
     nf   :: NFData b => (a -> b) -> a -> Pure
     whnf :: (a -> b) -> a -> Pure
 
------------
 
 ### Some Benchmarks
 
 ![](./img/bench.png)
 
------------
 
 ### Run it with _cabal bench_.
 
@@ -697,10 +664,11 @@ Pass configure flags to enable benchmark building
 Pass configure flags to disable benchmark building
 
     $ cabal configure --disable-bench && cabal build
+    
+<br />
 
 **Run it from the root of the package**
 
------------
 
 ### Command line ouput
 * Useful when doing automated checks
@@ -719,7 +687,6 @@ Take a look
     variance introduced by outliers: 12.306%
     variance is moderately inflated by outliers
 
------------
 
 ### Better visualization of results
 
@@ -733,8 +700,7 @@ To generate some html output
     $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html
 	
 Now we can open [some nice charts](file:///Users/jhawkins/Documents/talk/enterpriseFizzBuzz/enterpriseBench.html) in our favorite browser.
-	 
------------
+
 
 Release All the Code
 =========
@@ -745,7 +711,6 @@ Release All the Code
     * sdist
     * upload
 
------------
 
 ### Generate some docs with _cabal haddock_.
 
@@ -753,7 +718,6 @@ Adding tags at top for content links
 
 ![](./img/haddock.png)
 
------------
 
 ### Generate some docs with _cabal haddock_.
 
@@ -764,7 +728,6 @@ Adding comments above the definitions
 * cabal haddock 
 * Take a look at the [documentation](file://localhost/Users/jhawkins/Documents/talk/enterpriseFizzBuzz/dist/doc/html/enterpriseFizzBuzz/index.html)
 
------------
 
 ### Generate a source distribution file with _cabal sdist_.
 
@@ -772,9 +735,10 @@ Adding comments above the definitions
 * Preprocessing executable 'fizzbuzz' for fizzbuzz-0.1.0.0...
 * Source tarball created: dist/fizzbuzz-0.1.0.0.tar.gz
 
+<br />
+
 **Run it from the root of the package**
 
------------
 
 ### Sample output
 
@@ -790,7 +754,6 @@ Adding comments above the definitions
     Preprocessing benchmark 'enterpriseBench' for enterpriseFizzBuzz-0.1.0.0...
     Source tarball created: dist/enterpriseFizzBuzz-0.1.0.0.tar.gz
 
------------
 
 ### For those who want to give back, _cabal upload_.
 
@@ -802,15 +765,13 @@ Pass the path to the tar
     Hackage username: 
     Hackage password: 
     Uploading dist/enterpriseFizzBuzz-0.1.0.0.tar.gz...
+    
+<br />
 
 **Run it from the root of the package**
-
------------
 
 
 ![](./img/cabal_end.jpg)
 =========
 ### For More Information
-    $ cabal unpack cabal && cd Cabal-1.**** && cabal configure && cabal haddock
-
------------
+    $ cabal unpack cabal && cd Cabal-1.**** && cabal haddock

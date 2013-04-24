@@ -54,6 +54,7 @@
 </section>
 <section id="cabal-all-the-things-from-init-to-testing-to-dist" class="level2">
 <h2>Cabal All the Things: From Init to Testing to Dist</h2>
+<p><br /> <br /> <br /></p>
 <p>Josh Hawkins</p>
 <p>April 24, 2013</p>
 </section>
@@ -68,7 +69,6 @@
 <li>Functional, strict, expressive, pure(ish), static(y), inferred, fast, fun</li>
 <li>Strong like a gorilla, yet soft and yielding like a Nerf ball</li>
 </ul>
-<hr />
 </section>
 <section id="section" class="level2">
 <h2><img src="./img/cabal_start.jpg" /></h2>
@@ -83,7 +83,6 @@
 <li>It describes what Haskell implementations support packages.</li>
 <li>It provides a way to express dependency on particular libraries, compilers, or versions.</li>
 </ul>
-<hr />
 </section>
 <section id="what-is-hackagedb" class="level3">
 <h3>What is HackageDB?</h3>
@@ -93,7 +92,6 @@
 <li>It provides a clean web interface for viewing and searching existing libraries.</li>
 <li>It provides links to dependencies.</li>
 </ul>
-<hr />
 </section>
 <section id="what-is-cabal-install" class="level3">
 <h3>What is Cabal-Install?</h3>
@@ -103,7 +101,6 @@
 <li>Package development - configuring, building, testing and benchmarking</li>
 <li>Package sharing - packaging and uploading</li>
 </ul>
-<hr />
 </section>
 </section>
 <section id="explore-all-the-packages" class="level1">
@@ -115,7 +112,6 @@
 * install
 * unpack
 * haddock</code></pre>
-<hr />
 </section>
 </section>
 <section id="cabal-update" class="level1">
@@ -126,8 +122,8 @@
 <li>This will download the most recent list of packages.</li>
 <li>Where is it downloading this list from?</li>
 </ul>
+<p><br /></p>
 <p><strong>Run it anywhere</strong></p>
-<hr />
 </section>
 <section id="take-a-look-at-the-output." class="level3">
 <h3>Take a look at the output.</h3>
@@ -145,7 +141,6 @@
   /Users/jhawkins/Library/Haskell/repo-cache/hackage.haskell.org/00-index.tar.gz
   Updating the index cache file...
   Reading available packages...</code></pre>
-<hr />
 </section>
 <section id="lets-try-out-cabal-list." class="level3">
 <h3>Lets try out <em>cabal list</em>.</h3>
@@ -156,9 +151,10 @@
       Default available version: 0.1.2
       Installed versions: [ Not installed ]
       License:  BSD3
-  Top level overview of the package available</code></pre>
+  Top level overview of the package available
+  </code></pre>
+<p><br /></p>
 <p><strong>Run it anywhere</strong></p>
-<hr />
 </section>
 <section id="cabal-lets-you-know..." class="level3">
 <h3>Cabal lets you know...</h3>
@@ -168,7 +164,6 @@ Run &#39;cabal update&#39; to get the latest list of available packages.</code><
 <p><strong>when your cabal-install needs an update.</strong></p>
 <pre><code>Note: there is a new version of cabal-install available.
             To upgrade, run: cabal install cabal-install</code></pre>
-<hr />
 </section>
 </section>
 <section id="cabal-install" class="level1">
@@ -183,7 +178,6 @@ Run &#39;cabal update&#39; to get the latest list of available packages.</code><
 <li>Installs library in a common place</li>
 <li>Installs executable(s) in a common place</li>
 </ul>
-<hr />
 </section>
 <section id="some-example-output" class="level3">
 <h3>Some example output</h3>
@@ -194,7 +188,6 @@ Configuring MonadCatchIO-transformers-0.3.0.0...
 Building MonadCatchIO-transformers-0.3.0.0...
 Preprocessing library MonadCatchIO-transformers-0.3.0.0...
 [1 of 1] Compiling Control.Monad.CatchIO ( src/Control/Monad/CatchIO.hs, dist/build/Control/Monad/CatchIO.o )</code></pre>
-<hr />
 </section>
 <section id="continued" class="level3">
 <h3>Continued…</h3>
@@ -206,7 +199,6 @@ Installing executable(s) in
 Registering snap-0.11.2.2...
 Installed snap-0.11.2.2
 Updating documentation index /Users/jhawkins/Library/Haskell/doc/index.html</code></pre>
-<hr />
 </section>
 </section>
 <section id="take-a-look-at-the-source." class="level1">
@@ -218,8 +210,8 @@ Updating documentation index /Users/jhawkins/Library/Haskell/doc/index.html</cod
 <li>Creates a versioned directory</li>
 <li>And drops the source code right there.</li>
 </ul>
+<p><br /></p>
 <p><strong>Run it somewhere for source code</strong></p>
-<hr />
 </section>
 <section id="some-example-output-1" class="level3">
 <h3>Some example output</h3>
@@ -228,7 +220,6 @@ Reading available packages...
 snap-0.11.2.2 has already been downloaded.
 Unpacking to snap-0.11.2.2/
 Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.</code></pre>
-<hr />
 </section>
 <section id="generate-some-documentation-via-cabal-haddock." class="level3">
 <h3>Generate some documentation via <em>cabal haddock</em>.</h3>
@@ -237,8 +228,8 @@ Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.</code
 <li>Documentation created: dist/doc/html/fizzbuzz/fizzbuzz/index.html</li>
 <li>This is another option when exploring the api of a library found on hackage.</li>
 </ul>
+<p><br /></p>
 <p><strong>Run it from the root of the package</strong></p>
-<hr />
 </section>
 </section>
 <section id="develop-all-the-packages" class="level1">
@@ -252,7 +243,6 @@ Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.</code
 * bench
 * sdist
 * upload</code></pre>
-<hr />
 </section>
 </section>
 <section id="what-does-cabal-init-do" class="level1">
@@ -266,8 +256,8 @@ Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.</code
 <li>Adds a specified Section - Library or Executable</li>
 <li>Adds descriptions and TODOs to the .cabal file</li>
 </ul>
+<p><br /></p>
 <p><strong>Run it from a new dir</strong></p>
-<hr />
 </section>
 <section id="some-example-prompts" class="level3">
 <h3>Some example prompts</h3>
@@ -285,7 +275,6 @@ Please choose a license:
    9) PublicDomain
   10) AllRightsReserved
   11) Other (specify)</code></pre>
-<hr />
 </section>
 <section id="continued-1" class="level3">
 <h3>Continued…</h3>
@@ -294,7 +283,6 @@ Please choose a license:
    2) Executable
 Your choice? 1
 Include documentation on what each field means (y/n)? [default: n] </code></pre>
-<hr />
 </section>
 </section>
 <section id="cabal-all-the-fields" class="level1">
@@ -308,7 +296,6 @@ Include documentation on what each field means (y/n)? [default: n] </code></pre>
 <li>Contains Flags</li>
 <li>Contains the Core Sections of your Package</li>
 </ul>
-<hr />
 </section>
 <section id="top-level-description" class="level3">
 <h3>Top Level Description</h3>
@@ -329,7 +316,6 @@ source-repository head
   type:     git
   location: https://github.com/JHawk/enterpriseFizzBuzz/
   subdir:   FizzBuzzLib</code></pre>
-<hr />
 </section>
 <section id="build-description" class="level3">
 <h3>Build Description</h3>
@@ -337,9 +323,7 @@ source-repository head
 cabal-version:      &gt;=1.8
 
 -- defines other files to be packaged and distributed
-extra-source-files: README bootstrap.sh
-    </code></pre>
-<hr />
+extra-source-files: README bootstrap.sh</code></pre>
 </section>
 <section id="a-few-common-package-build-fields" class="level3">
 <h3>A Few Common Package Build Fields</h3>
@@ -363,7 +347,6 @@ hs-source-dirs: src/FizzBuzz
 
 -- Some set flags or tokens
 ghc-options: -Wall -fwarn-tabs</code></pre>
-<hr />
 </section>
 <section id="conditional-thingy" class="level3">
 <h3>Conditional Thingy</h3>
@@ -373,7 +356,6 @@ ghc-options: -Wall -fwarn-tabs</code></pre>
 else
   build-depends:
     bytestring &gt;= 0.10.0 &amp;&amp; &lt;0.11</code></pre>
-<hr />
 </section>
 <section id="define-your-own-conditional-thingy" class="level3">
 <h3>Define Your Own Conditional Thingy</h3>
@@ -389,7 +371,6 @@ else
   buildable: False</code></pre>
 <p><strong>Use it via <em>cabal configure</em></strong></p>
 <pre><code>$ cabal configure --flags=build-stuff</code></pre>
-<hr />
 </section>
 <section id="section-1" class="level2">
 <h2><img src="./img/condThingy.jpg" /></h2>
@@ -421,7 +402,6 @@ else
       EnterpriseFizzBuzz.Fizz
     , EnterpriseFizzBuzz.FizzBuzz</code></pre>
 <p>There can be only one</p>
-<hr />
 </section>
 <section id="executable-section" class="level3">
 <h3>Executable Section</h3>
@@ -436,7 +416,6 @@ else
   -- alternatively 
   -- main-is:     src/Main.hs</code></pre>
 <p>Can define more than one</p>
-<hr />
 </section>
 <section id="test-suite-section" class="level3">
 <h3>Test-Suite Section</h3>
@@ -454,7 +433,6 @@ else
   type:              exitcode-stdio-1.0
   main-is:           Enterprise/FizzBuzzUnitTests.hs</code></pre>
 <p>Can define more than one.</p>
-<hr />
 </section>
 <section id="benchmark-section" class="level3">
 <h3>Benchmark Section</h3>
@@ -470,11 +448,9 @@ else
   type:              exitcode-stdio-1.0
   main-is:           Enterprise/FizzBuzzBenchmarks.hs</code></pre>
 <p>Can define more than one.</p>
-<hr />
 </section>
 <section id="look-at-a-complete-.cabal-file." class="level3">
 <h3>Look at a Complete .cabal File.</h3>
-<hr />
 </section>
 </section>
 <section id="create-all-the-code" class="level1">
@@ -482,7 +458,6 @@ else
 <section id="fizzbuzz" class="level3">
 <h3>FizzBuzz</h3>
 <p>Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.</p>
-<hr />
 </section>
 <section id="simple-main-for-fizzbuzz" class="level3">
 <h3>Simple Main for FizzBuzz</h3>
@@ -490,7 +465,6 @@ else
 <figure>
 <img src="./img/main.png" />
 </figure>
-<hr />
 </section>
 <section id="another-main-for-fizzbuzzing-single-numbers" class="level3">
 <h3>Another Main for FizzBuzzing Single Numbers</h3>
@@ -498,7 +472,6 @@ else
 <figure>
 <img src="./img/singleMain.png" />
 </figure>
-<hr />
 </section>
 <section id="stub-module-in-library" class="level3">
 <h3>Stub Module in Library</h3>
@@ -506,7 +479,6 @@ else
 <figure>
 <img src="./img/libUndefined.png" />
 </figure>
-<hr />
 </section>
 </section>
 <section id="run-all-the-code" class="level1">
@@ -520,8 +492,8 @@ else
 <li>Decides which tools to use</li>
 <li>Tells which dependencies aren't available</li>
 </ul>
+<p><br /></p>
 <p><strong>Run it from the root of the package</strong></p>
-<hr />
 </section>
 <section id="what-does-cabal-build-do" class="level3">
 <h3>What does &quot;cabal build&quot; do?</h3>
@@ -530,8 +502,8 @@ else
 <li>Creates dist/build</li>
 <li>Builds the package and puts it in dist/build/enterpriseFizzBuzz/enterpriseFizzBuzz</li>
 </ul>
+<p><br /></p>
 <p><strong>Run it from the root of the package</strong></p>
-<hr />
 </section>
 <section id="what-happens-when-i-run-it" class="level3">
 <h3>What happens when I run it?</h3>
@@ -540,7 +512,6 @@ $ ./dist/build/enterpriseFizzBuzz/enterpriseFizzBuzz
 How many numbers should I FizzBuzz.
 4
 enterpriseFizzBuzz: Prelude.undefined</code></pre>
-<hr />
 </section>
 </section>
 <section id="test-all-the-code" class="level1">
@@ -554,7 +525,6 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 <li>Supports Unit as well as Invariant tests via Providers</li>
 <li>Supports test grouping and assertions</li>
 </ul>
-<hr />
 </section>
 <section id="unit-testing-with-hunit" class="level3">
 <h3>Unit Testing with HUnit</h3>
@@ -573,7 +543,6 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 (@?=) :: (Eq a, Show a) =&gt; a -&gt; a -&gt; Assertion
 
 (@?) :: AssertionPredicable t =&gt; t -&gt; String -&gt; Assertion</code></pre>
-<hr />
 </section>
 <section id="hunit-provider-and-the-test-framework" class="level3">
 <h3>HUnit Provider and the Test Framework</h3>
@@ -581,14 +550,12 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 <pre><code>testCase :: TestName -&gt; Assertion -&gt; Test</code></pre>
 <p>Test Framework groups the tests</p>
 <pre><code>testGroup :: TestName -&gt; [Test] -&gt; TestSource</code></pre>
-<hr />
 </section>
 <section id="a-few-hunit-tests" class="level3">
 <h3>A few HUnit tests</h3>
 <figure>
 <img src="./img/tests.png" />
 </figure>
-<hr />
 </section>
 <section id="run-it-with-cabal-test." class="level3">
 <h3>Run it with <em>cabal test</em>.</h3>
@@ -602,15 +569,14 @@ Fizz Buzz Unit Test Cases:
 ERROR: Prelude.undefined </code></pre>
 <p>Pass configure flags to disable test building</p>
 <pre><code>$ cabal configure --disable-tests &amp;&amp; cabal build</code></pre>
+<p><br /></p>
 <p><strong>Run it from the root of the package</strong></p>
-<hr />
 </section>
 <section id="lets-make-them-pass" class="level3">
 <h3>Lets make them pass!</h3>
 <figure>
 <img src="./img/libImpl.png" />
 </figure>
-<hr />
 </section>
 <section id="some-output-from-our-test-suite" class="level3">
 <h3>Some output from our Test Suite</h3>
@@ -630,7 +596,6 @@ showing fizzbuzz pass:
 Test suite enterpriseUnit: FAIL
 Test suite logged to: dist/test/enterpriseFizzBuzz-0.1.0.0-enterpriseUnit.log
 0 of 1 test suites (0 of 1 test cases) passed.</code></pre>
-<hr />
 </section>
 </section>
 <section id="install-the-code" class="level1">
@@ -644,8 +609,8 @@ Configuring enterpriseFizzBuzz-0.1.0.0...
 Registering enterpriseFizzBuzz-0.1.0.0...
 Installed enterpriseFizzBuzz-0.1.0.0
 Updating documentation index /Users/jhawkins/Library/Haskell/doc/index.html</code></pre>
+<p><br /></p>
 <p><strong>Run it from the root of the package</strong></p>
-<hr />
 </section>
 <section id="run-the-executables-via-the-command-line." class="level3">
 <h3>Run the executables via the command line.</h3>
@@ -654,7 +619,6 @@ Updating documentation index /Users/jhawkins/Library/Haskell/doc/index.html</cod
 Which number should I FizzBuzz?
 3
 &quot;Fizz&quot;</code></pre>
-<hr />
 </section>
 </section>
 <section id="benchmark-the-code" class="level1">
@@ -667,7 +631,6 @@ Which number should I FizzBuzz?
 <li>Provides some nice graphs for further inspection</li>
 <li>Provides easy to use functions for constructing Benchmarks and grouping them</li>
 </ul>
-<hr />
 </section>
 <section id="constructing-a-benchmark" class="level3">
 <h3>Constructing a Benchmark</h3>
@@ -682,7 +645,6 @@ Which number should I FizzBuzz?
 <pre><code>run :: a -&gt; Int -&gt; IO ()
 bench  :: Benchmarkable b =&gt; String -&gt; b -&gt; Benchmark
 bgroup :: String -&gt; [Benchmark] -&gt; Benchmark</code></pre>
-<hr />
 </section>
 <section id="creating-a-pure-benchmarkable" class="level3">
 <h3>Creating a Pure Benchmarkable</h3>
@@ -693,14 +655,12 @@ bgroup :: String -&gt; [Benchmark] -&gt; Benchmark</code></pre>
 <p><strong>Important to ensure your code gets evaluated</strong></p>
 <pre><code>nf   :: NFData b =&gt; (a -&gt; b) -&gt; a -&gt; Pure
 whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
-<hr />
 </section>
 <section id="some-benchmarks" class="level3">
 <h3>Some Benchmarks</h3>
 <figure>
 <img src="./img/bench.png" />
 </figure>
-<hr />
 </section>
 <section id="run-it-with-cabal-bench." class="level3">
 <h3>Run it with <em>cabal bench</em>.</h3>
@@ -708,8 +668,8 @@ whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
 <pre><code>$ cabal configure --enable-bench &amp;&amp; cabal build &amp;&amp; cabal bench</code></pre>
 <p>Pass configure flags to disable benchmark building</p>
 <pre><code>$ cabal configure --disable-bench &amp;&amp; cabal build</code></pre>
+<p><br /></p>
 <p><strong>Run it from the root of the package</strong></p>
-<hr />
 </section>
 <section id="command-line-ouput" class="level3">
 <h3>Command line ouput</h3>
@@ -728,7 +688,6 @@ found 8 outliers among 100 samples (8.0%)
   1 (1.0%) high severe
 variance introduced by outliers: 12.306%
 variance is moderately inflated by outliers</code></pre>
-<hr />
 </section>
 <section id="better-visualization-of-results" class="level3">
 <h3>Better visualization of results</h3>
@@ -741,7 +700,6 @@ variance is moderately inflated by outliers</code></pre>
 <p>To generate some html output</p>
 <pre><code>$ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></pre>
 <p>Now we can open <a href="file:///Users/jhawkins/Documents/talk/enterpriseFizzBuzz/enterpriseBench.html">some nice charts</a> in our favorite browser.</p>
-<hr />
 </section>
 </section>
 <section id="release-all-the-code" class="level1">
@@ -751,7 +709,6 @@ variance is moderately inflated by outliers</code></pre>
 <pre><code>* haddock (again) 
 * sdist
 * upload</code></pre>
-<hr />
 </section>
 <section id="generate-some-docs-with-cabal-haddock." class="level3">
 <h3>Generate some docs with <em>cabal haddock</em>.</h3>
@@ -759,7 +716,6 @@ variance is moderately inflated by outliers</code></pre>
 <figure>
 <img src="./img/haddock.png" />
 </figure>
-<hr />
 </section>
 <section id="generate-some-docs-with-cabal-haddock.-1" class="level3">
 <h3>Generate some docs with <em>cabal haddock</em>.</h3>
@@ -771,7 +727,6 @@ variance is moderately inflated by outliers</code></pre>
 <li>cabal haddock</li>
 <li>Take a look at the <a href="file://localhost/Users/jhawkins/Documents/talk/enterpriseFizzBuzz/dist/doc/html/enterpriseFizzBuzz/index.html">documentation</a></li>
 </ul>
-<hr />
 </section>
 <section id="generate-a-source-distribution-file-with-cabal-sdist." class="level3">
 <h3>Generate a source distribution file with <em>cabal sdist</em>.</h3>
@@ -780,8 +735,8 @@ variance is moderately inflated by outliers</code></pre>
 <li>Preprocessing executable 'fizzbuzz' for fizzbuzz-0.1.0.0...</li>
 <li>Source tarball created: dist/fizzbuzz-0.1.0.0.tar.gz</li>
 </ul>
+<p><br /></p>
 <p><strong>Run it from the root of the package</strong></p>
-<hr />
 </section>
 <section id="sample-output" class="level3">
 <h3>Sample output</h3>
@@ -796,7 +751,6 @@ Preprocessing executable &#39;enterpriseFizzBuzz&#39; for
 enterpriseFizzBuzz-0.1.0.0...
 Preprocessing benchmark &#39;enterpriseBench&#39; for enterpriseFizzBuzz-0.1.0.0...
 Source tarball created: dist/enterpriseFizzBuzz-0.1.0.0.tar.gz</code></pre>
-<hr />
 </section>
 <section id="for-those-who-want-to-give-back-cabal-upload." class="level3">
 <h3>For those who want to give back, <em>cabal upload</em>.</h3>
@@ -806,16 +760,15 @@ Source tarball created: dist/enterpriseFizzBuzz-0.1.0.0.tar.gz</code></pre>
 Hackage username: 
 Hackage password: 
 Uploading dist/enterpriseFizzBuzz-0.1.0.0.tar.gz...</code></pre>
+<p><br /></p>
 <p><strong>Run it from the root of the package</strong></p>
-<hr />
 </section>
 </section>
 <section id="section-2" class="level1">
 <h1><img src="./img/cabal_end.jpg" /></h1>
 <section id="for-more-information" class="level3">
 <h3>For More Information</h3>
-<pre><code>$ cabal unpack cabal &amp;&amp; cd Cabal-1.**** &amp;&amp; cabal configure &amp;&amp; cabal haddock</code></pre>
-<hr />
+<pre><code>$ cabal unpack cabal &amp;&amp; cd Cabal-1.**** &amp;&amp; cabal haddock</code></pre>
 </section>
 </section>
 </div>
