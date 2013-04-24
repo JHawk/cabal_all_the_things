@@ -87,7 +87,7 @@ _cabal update_
 
 -----------
 
-### Lets try out "cabal list".
+### Lets try out _cabal list_.
 
       $ cabal list snaplet-tasks
       * snaplet-tasks
@@ -152,7 +152,7 @@ _cabal install_
 
 Take a look at the Source.
 =========
-### Get your hands dirty with "cabal unpack".
+### Get your hands dirty with _cabal unpack_.
 * This simply Downloads the package from Hackage
 * Creates a versioned directory
 * And drops the source code right there.
@@ -169,7 +169,7 @@ Take a look at the Source.
 
 -----------
 
-### Generate Some Documentation via "cabal haddock"
+### Generate some documentation via _cabal haddock_.
 * Generates some nicely formatted html
 * Documentation created: dist/doc/html/fizzbuzz/fizzbuzz/index.html
 * This is another option when exploring the api of a library found on hackage.
@@ -283,7 +283,7 @@ What does "cabal init" do?
       -- prelude +
       base >= 2,
       buzz,
-      -- symantic versioning 
+      -- semantic versioning 
       fizz >= 1.2 && < 1.3
       -- fizz ==1.2.*
       
@@ -312,7 +312,7 @@ What does "cabal init" do?
 
 -----------
 
-### Define Your Own Condtional Thingy
+### Define Your Own Conditional Thingy
 
 **Define it at top level**
 
@@ -450,9 +450,9 @@ Run All the Code
 **Prepares to build the package**
 
 * Looks for available packages
-* Tries to resolve dependecies
+* Tries to resolve dependencies
 * Decides which tools to use
-* Tells which dependecies aren't available
+* Tells which dependencies aren't available
     
 -----------
 
