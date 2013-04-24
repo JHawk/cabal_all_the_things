@@ -689,72 +689,24 @@ variance is moderately inflated by outliers</code></pre>
 <li>Source tarball created: dist/fizzbuzz-0.1.0.0.tar.gz</li>
 </ul>
 <hr />
-<section id="for-those-who-want-to-give-back" class="level4">
-<h4>For those who want to give back,</h4>
 </section>
-</section>
-<section id="cabal-upload" class="level3">
-<h3><em>cabal upload</em></h3>
+<section id="for-those-who-want-to-give-back-cabal-upload." class="level3">
+<h3>For those who want to give back, &quot;cabal upload&quot;.</h3>
 <ul>
 <li>Requires a Hackage username and password.</li>
 <li>Uploads your package to Hackage.</li>
 </ul>
 <hr />
 </section>
+</section>
+<section id="section-2" class="level1">
+<h1><img src="./img/cabal_end.jpg" /></h1>
 <section id="for-more-information" class="level3">
 <h3>For More Information</h3>
-<pre><code>$ cabal unpack cabal &amp;&amp; cd Cabal-1.16.*** &amp;&amp; cabal configure &amp;&amp; cabal haddock</code></pre>
+<pre><code>$ cabal unpack cabal &amp;&amp; cd Cabal-1.**** &amp;&amp; cabal configure &amp;&amp; cabal haddock</code></pre>
 <hr />
-<figure>
-<img src="./img/cabal_end.jpg" />
-</figure>
-<hr />
-<hr />
-<p>.</p>
 <hr />
 <p>“Languages flourish when libraries are plentiful, reliable, and well documented.” - Simon Peyton Jones</p>
-</section>
-<section id="extending-cabal" class="level3">
-<h3>Extending Cabal</h3>
-</section>
-<section id="a-more-custom-build" class="level3">
-<h3>A more Custom Build</h3>
-<ul>
-<li>Uses Setup.hs or Setup.lhs.</li>
-<li>TODO - Custom build and setup.hs</li>
-<li>look at darcs ### Define your own task API?</li>
-</ul>
-<hr />
-</section>
-<section id="quickcheck-if-i-have-time" class="level3">
-<h3>QuickCheck if i have time</h3>
-<ul>
-<li>blah</li>
-<li>blah</li>
-<li>blah</li>
-</ul>
-<hr />
-</section>
-<section id="detailed-may-not-be-available-yet" class="level3">
-<h3>detailed (may not be available yet)</h3>
-<ul>
-<li>Preferred method for writing tests.</li>
-<li>Produces more detailed human and machine readable results.</li>
-<li>Requires a test-module field : The module exporting the tests.</li>
-</ul>
-<p>example</p>
-<pre><code>test-suite detailed-fizzbuzz-tests
-    build-depends: 
-      base,
-      test-framework,
-      test-framework-hunit,
-      test-framework-quickcheck2,
-      HUnit,
-      QuickCheck
-    
-    type:       detailed-1.0
-    
-    test-module: FizzBuzz.Tests</code></pre>
 <hr />
 </section>
 </section>

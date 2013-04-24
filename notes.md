@@ -655,27 +655,22 @@ Release All the Code
 
 -----------
 
-#### For those who want to give back, 
-### _cabal upload_
+### For those who want to give back, "cabal upload".
 * Requires a Hackage username and password.
 * Uploads your package to Hackage.
 
 -----------
 
-### For More Information
-    $ cabal unpack cabal && cd Cabal-1.16.*** && cabal configure && cabal haddock
-
------------
 
 ![](./img/cabal_end.jpg)
+=========
+### For More Information
+    $ cabal unpack cabal && cd Cabal-1.**** && cabal configure && cabal haddock
 
 -----------
-
------------
-
-.
-
 
 -----------
 
 “Languages flourish when libraries are plentiful, reliable, and well documented.” - Simon Peyton Jones
+
+-----------
