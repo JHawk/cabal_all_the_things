@@ -534,13 +534,11 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 <li>Assertions are types that on failure will output a message</li>
 </ul>
 <p><strong>Some assertion functions</strong></p>
-<pre><code>-- expected value
-assertEqual :: (Eq a, Show a) =&gt; String -&gt; a -&gt; a -&gt; Assertion
+<pre><code>assertEqual :: (Eq a, Show a) =&gt; String -&gt; a -&gt; a -&gt; Assertion
 
--- ? points to the actual
-(@=?) 
+(@=?) :: (Eq a, Show a) =&gt; a -&gt; a -&gt; Assertion
 
-(@?=) 
+(@?=) :: (Eq a, Show a) =&gt; a -&gt; a -&gt; Assertion
 
 (@?) :: AssertionPredicable t =&gt; t -&gt; String -&gt; Assertion</code></pre>
 <hr />
@@ -549,24 +547,22 @@ assertEqual :: (Eq a, Show a) =&gt; String -&gt; a -&gt; a -&gt; Assertion
 <h3>HUnit Provider and the Test Framework</h3>
 <p>HUnit Provider generates a Test from an Assertion</p>
 <pre><code>testCase :: TestName -&gt; Assertion -&gt; Test</code></pre>
-<p>Test Framework assembles a number of tests into a cohesive group</p>
+<p>Test Framework groups the tests</p>
 <pre><code>testGroup :: TestName -&gt; [Test] -&gt; TestSource</code></pre>
 <hr />
 </section>
 <section id="a-few-hunit-tests" class="level3">
 <h3>A few HUnit tests</h3>
 <figure>
-<img src="./img/unitTests.png" />
+<img src="./img/tests.png" />
 </figure>
 <hr />
 </section>
-<section id="run-it-with-cabal-test" class="level3">
-<h3>Run it with &quot;cabal test&quot;!</h3>
+<section id="run-it-with-cabal-test." class="level3">
+<h3>Run it with <em>cabal test</em>.</h3>
+<p><strong>Pass configure flags to enable test building</strong></p>
 <pre><code>$ cabal configure --enable-tests &amp;&amp; cabal build &amp;&amp; cabal test
 $ cabal configure --disable-tests &amp;&amp; cabal build</code></pre>
-<ul>
-<li>Do the test-suite deps get added to the build if not enabled?</li>
-</ul>
 <hr />
 </section>
 <section id="test-will-report-your-errors" class="level3">
@@ -606,8 +602,8 @@ Test suite logged to: dist/test/enterpriseFizzBuzz-0.1.0.0-enterpriseUnit.log
 <hr />
 </section>
 </section>
-<section id="criterion-the-code" class="level1">
-<h1>Criterion the Code</h1>
+<section id="benchmark-the-code" class="level1">
+<h1>Benchmark the Code</h1>
 <section id="confidence-in-code-performance" class="level3">
 <h3>Confidence in Code Performance</h3>
 <ul>
@@ -652,13 +648,11 @@ whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
 </figure>
 <hr />
 </section>
-<section id="run-it-with-cabal-bench" class="level3">
-<h3>Run it with &quot;cabal bench&quot;!</h3>
+<section id="run-it-with-cabal-bench." class="level3">
+<h3>Run it with <em>cabal bench</em>.</h3>
+<p><strong>Pass configure flags to enable benchmark building</strong></p>
 <pre><code>$ cabal configure --enable-bench &amp;&amp; cabal build &amp;&amp; cabal bench
 $ cabal configure --disable-bench &amp;&amp; cabal build</code></pre>
-<ul>
-<li>Do the bench deps get added to the build if not enabled?</li>
-</ul>
 <hr />
 </section>
 <section id="some-output-from-our-benchmarks" class="level3">
@@ -671,20 +665,17 @@ found 8 outliers among 100 samples (8.0%)
   4 (4.0%) high mild
   1 (1.0%) high severe
 variance introduced by outliers: 12.306%
-variance is moderately inflated by outliers</code></pre>
-<hr />
-</section>
-<section id="enjoy-criterions-charts" class="level3">
-<h3>Enjoy Criterion's charts</h3>
-<pre><code>$ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></pre>
+variance is moderately inflated by outliers
+
+$ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></pre>
 <p>Now we can open <a href="file:///Users/jhawkins/Documents/talk/enterpriseFizzBuzz/enterpriseBench.html">some nice charts</a> in our favorite browser.</p>
 <hr />
 </section>
 </section>
 <section id="release-all-the-code" class="level1">
 <h1>Release All the Code</h1>
-<section id="cabal-sdist" class="level3">
-<h3><em>cabal sdist</em></h3>
+<section id="generate-a-source-distribution-file-with-cabal-sdist." class="level3">
+<h3>Generate a source distribution file with <em>cabal sdist</em>.</h3>
 <ul>
 <li>Building source dist for fizzbuzz-0.1.0.0...</li>
 <li>Preprocessing executable 'fizzbuzz' for fizzbuzz-0.1.0.0...</li>
@@ -692,12 +683,28 @@ variance is moderately inflated by outliers</code></pre>
 </ul>
 <hr />
 </section>
+<section id="sample-output" class="level3">
+<h3>Sample output</h3>
+<pre><code>$ cabal sdist
+Distribution quality warnings:
+When distributing packages it is encouraged to specify source control
+information in the .cabal file using one or more &#39;source-repository&#39; sections.
+See the Cabal user guide for details.
+Building source dist for enterpriseFizzBuzz-0.1.0.0...
+Preprocessing library enterpriseFizzBuzz-0.1.0.0...
+Preprocessing executable &#39;enterpriseFizzBuzz&#39; for
+enterpriseFizzBuzz-0.1.0.0...
+Preprocessing benchmark &#39;enterpriseBench&#39; for enterpriseFizzBuzz-0.1.0.0...
+Source tarball created: dist/enterpriseFizzBuzz-0.1.0.0.tar.gz</code></pre>
+<hr />
+</section>
 <section id="for-those-who-want-to-give-back-cabal-upload." class="level3">
-<h3>For those who want to give back, &quot;cabal upload&quot;.</h3>
-<ul>
-<li>Requires a Hackage username and password.</li>
-<li>Uploads your package to Hackage.</li>
-</ul>
+<h3>For those who want to give back, <em>cabal upload</em>.</h3>
+<p><strong>Requires a Hackage username and password</strong></p>
+<pre><code>$ cabal upload dist/enterpriseFizzBuzz-0.1.0.0.tar.gz 
+Hackage username: 
+Hackage password: 
+Uploading dist/enterpriseFizzBuzz-0.1.0.0.tar.gz...</code></pre>
 <hr />
 </section>
 </section>

@@ -116,7 +116,9 @@ _cabal update_
 
 _cabal install_
 =========
+
 #### It does lots of work for you.
+
 * Grabs the Library's Dependencies.
 * Grabs the Library you specified.
 * Build, compiles, installs, registers, generates docs...
@@ -492,13 +494,11 @@ Test All the Code
 
 **Some assertion functions**
 
-    -- expected value
     assertEqual :: (Eq a, Show a) => String -> a -> a -> Assertion
     
-    -- ? points to the actual
-    (@=?) 
+    (@=?) :: (Eq a, Show a) => a -> a -> Assertion
     
-    (@?=) 
+    (@?=) :: (Eq a, Show a) => a -> a -> Assertion
     
     (@?) :: AssertionPredicable t => t -> String -> Assertion
 
@@ -510,7 +510,7 @@ HUnit Provider generates a Test from an Assertion
 
     testCase :: TestName -> Assertion -> Test
 
-Test Framework assembles a number of tests into a cohesive group
+Test Framework groups the tests
 
     testGroup :: TestName -> [Test] -> TestSource
 
@@ -518,16 +518,16 @@ Test Framework assembles a number of tests into a cohesive group
 
 ### A few HUnit tests
 
-![](./img/unitTests.png)
+![](./img/tests.png)
 
 -----------
 
-### Run it with "cabal test"!
+### Run it with _cabal test_.
 
+**Pass configure flags to enable test building**
+ 
     $ cabal configure --enable-tests && cabal build && cabal test
     $ cabal configure --disable-tests && cabal build
-
-* Do the test-suite deps get added to the build if not enabled?
 
 -----------
 
@@ -568,7 +568,7 @@ Test Framework assembles a number of tests into a cohesive group
 
 -----------
 
-Criterion the Code
+Benchmark the Code
 =========
 
 ### Confidence in Code Performance
@@ -615,12 +615,12 @@ Evaluates results to normal form or weak head normal form
 
 -----------
 
-### Run it with "cabal bench"!
+### Run it with _cabal bench_.
+
+**Pass configure flags to enable benchmark building**
 
     $ cabal configure --enable-bench && cabal build && cabal bench
     $ cabal configure --disable-bench && cabal build
-
-* Do the bench deps get added to the build if not enabled?
 
 -----------
 
@@ -636,10 +636,6 @@ Evaluates results to normal form or weak head normal form
     variance introduced by outliers: 12.306%
     variance is moderately inflated by outliers
 
------------
-
-### Enjoy Criterion's charts
-
     $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html
 	
 Now we can open [some nice charts](file:///Users/jhawkins/Documents/talk/enterpriseFizzBuzz/enterpriseBench.html) in our favorite browser.
@@ -649,16 +645,38 @@ Now we can open [some nice charts](file:///Users/jhawkins/Documents/talk/enterpr
 Release All the Code
 =========
 
-### _cabal sdist_
+### Generate a source distribution file with _cabal sdist_.
+
 * Building source dist for fizzbuzz-0.1.0.0...
 * Preprocessing executable 'fizzbuzz' for fizzbuzz-0.1.0.0...
 * Source tarball created: dist/fizzbuzz-0.1.0.0.tar.gz
 
 -----------
 
-### For those who want to give back, "cabal upload".
-* Requires a Hackage username and password.
-* Uploads your package to Hackage.
+### Sample output
+
+    $ cabal sdist
+    Distribution quality warnings:
+    When distributing packages it is encouraged to specify source control
+    information in the .cabal file using one or more 'source-repository' sections.
+    See the Cabal user guide for details.
+    Building source dist for enterpriseFizzBuzz-0.1.0.0...
+    Preprocessing library enterpriseFizzBuzz-0.1.0.0...
+    Preprocessing executable 'enterpriseFizzBuzz' for
+    enterpriseFizzBuzz-0.1.0.0...
+    Preprocessing benchmark 'enterpriseBench' for enterpriseFizzBuzz-0.1.0.0...
+    Source tarball created: dist/enterpriseFizzBuzz-0.1.0.0.tar.gz
+
+-----------
+
+### For those who want to give back, _cabal upload_.
+
+**Requires a Hackage username and password**
+
+    $ cabal upload dist/enterpriseFizzBuzz-0.1.0.0.tar.gz 
+    Hackage username: 
+    Hackage password: 
+    Uploading dist/enterpriseFizzBuzz-0.1.0.0.tar.gz...
 
 -----------
 
