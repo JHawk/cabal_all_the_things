@@ -702,10 +702,12 @@ Pass configure flags to disable benchmark building
 
 -----------
 
-### Printed from the command line
+### Command line ouput
 * Useful when doing automated checks
 * Descriptive about outliers
 * Tells the mean and standard deviation
+
+Take a look
 
     benchmarking fizzBuzz head normal form/100
 	mean: 84.94579 ns, lb 84.61875 ns, ub 85.26468 ns, ci 0.950
@@ -747,10 +749,20 @@ Release All the Code
 
 ### Generate some docs with _cabal haddock_.
 
-* Special commenting for better docs
-* Take a look at the [documentation](file://localhost/Users/jhawkins/Documents/talk/enterpriseFizzBuzz/dist/doc/html/enterpriseFizzBuzz/index.html)
+Adding tags at top for content links
 
-**Run it from the root of the package**
+![](./img/haddock.png)
+
+-----------
+
+### Generate some docs with _cabal haddock_.
+
+Adding comments above the definitions
+
+![](./img/haddock2.png)
+
+* cabal haddock 
+* Take a look at the [documentation](file://localhost/Users/jhawkins/Documents/talk/enterpriseFizzBuzz/dist/doc/html/enterpriseFizzBuzz/index.html)
 
 -----------
 

@@ -711,14 +711,23 @@ whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
 <p><strong>Run it from the root of the package</strong></p>
 <hr />
 </section>
-<section id="printed-from-the-command-line" class="level3">
-<h3>Printed from the command line</h3>
+<section id="command-line-ouput" class="level3">
+<h3>Command line ouput</h3>
 <ul>
 <li>Useful when doing automated checks</li>
 <li>Descriptive about outliers</li>
-<li><p>Tells the mean and standard deviation</p>
-<p>benchmarking fizzBuzz head normal form/100 mean: 84.94579 ns, lb 84.61875 ns, ub 85.26468 ns, ci 0.950 std dev: 1.656436 ns, lb 1.389480 ns, ub 2.029530 ns, ci 0.950 found 8 outliers among 100 samples (8.0%) 3 (3.0%) low mild 4 (4.0%) high mild 1 (1.0%) high severe variance introduced by outliers: 12.306% variance is moderately inflated by outliers</p></li>
+<li>Tells the mean and standard deviation</li>
 </ul>
+<p>Take a look</p>
+<pre><code>benchmarking fizzBuzz head normal form/100
+mean: 84.94579 ns, lb 84.61875 ns, ub 85.26468 ns, ci 0.950
+std dev: 1.656436 ns, lb 1.389480 ns, ub 2.029530 ns, ci 0.950
+found 8 outliers among 100 samples (8.0%)
+  3 (3.0%) low mild
+  4 (4.0%) high mild
+  1 (1.0%) high severe
+variance introduced by outliers: 12.306%
+variance is moderately inflated by outliers</code></pre>
 <hr />
 </section>
 <section id="better-visualization-of-results" class="level3">
@@ -746,11 +755,22 @@ whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
 </section>
 <section id="generate-some-docs-with-cabal-haddock." class="level3">
 <h3>Generate some docs with <em>cabal haddock</em>.</h3>
+<p>Adding tags at top for content links</p>
+<figure>
+<img src="./img/haddock.png" />
+</figure>
+<hr />
+</section>
+<section id="generate-some-docs-with-cabal-haddock.-1" class="level3">
+<h3>Generate some docs with <em>cabal haddock</em>.</h3>
+<p>Adding comments above the definitions</p>
+<figure>
+<img src="./img/haddock2.png" />
+</figure>
 <ul>
-<li>Special commenting for better docs</li>
+<li>cabal haddock</li>
 <li>Take a look at the <a href="file://localhost/Users/jhawkins/Documents/talk/enterpriseFizzBuzz/dist/doc/html/enterpriseFizzBuzz/index.html">documentation</a></li>
 </ul>
-<p><strong>Run it from the root of the package</strong></p>
 <hr />
 </section>
 <section id="generate-a-source-distribution-file-with-cabal-sdist." class="level3">
