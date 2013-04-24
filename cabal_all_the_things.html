@@ -391,8 +391,8 @@ else
 <h1>.cabal Sections</h1>
 <section id="library-section" class="level3">
 <h3>Library Section</h3>
-<p><strong>Requires exposed-modules</strong></p>
-<p>Describes modules exposed to those using your package</p>
+<p><strong>Requires Exposed-Modules</strong></p>
+<p>Describes modules exposed to the package's consumer</p>
 <pre><code>library
   build-depends:
     base         &gt;= 4 &amp;&amp; &lt;= 5 
@@ -418,7 +418,6 @@ else
   
   -- alternatively 
   -- main-is:     src/Main.hs</code></pre>
-<p>Are exposed-modules available?</p>
 <hr />
 </section>
 <section id="test-suite-section" class="level3">
@@ -436,13 +435,11 @@ else
 
   type:              exitcode-stdio-1.0
   main-is:           Enterprise/FizzBuzzUnitTests.hs</code></pre>
-<p>Are exposed-modules available?</p>
 <hr />
 </section>
 <section id="benchmark-section" class="level3">
 <h3>Benchmark Section</h3>
 <p><strong>Requires Unique Identifier, Main-Is, Type</strong></p>
-<p>Executable that indicates failure with a non-zero exit code.</p>
 <pre><code>benchmark enterpriseBench
   build-depends:     base ==4.5.*
                    , criterion
@@ -452,7 +449,6 @@ else
 
   type:              exitcode-stdio-1.0
   main-is:           Enterprise/FizzBuzzBenchmarks.hs</code></pre>
-<p>Are exposed-modules available?</p>
 <hr />
 </section>
 <section id="look-at-a-complete-.cabal-file." class="level3">
@@ -462,6 +458,11 @@ else
 </section>
 <section id="create-all-the-code" class="level1">
 <h1>Create All the Code</h1>
+<section id="fizzbuzz" class="level3">
+<h3>FizzBuzz</h3>
+<p>Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.</p>
+<hr />
+</section>
 <section id="simple-main" class="level3">
 <h3>Simple Main</h3>
 <p><strong>src/Main.hs</strong></p>
@@ -533,7 +534,8 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 <li>Assertions are types that on failure will output a message</li>
 </ul>
 <p><strong>Some assertion functions</strong></p>
-<pre><code>assertEqual :: (Eq a, Show a) =&gt; String -&gt; a -&gt; a -&gt; Assertion
+<pre><code>-- expected value
+assertEqual :: (Eq a, Show a) =&gt; String -&gt; a -&gt; a -&gt; Assertion
 
 -- ? points to the actual
 (@=?) 
@@ -704,9 +706,6 @@ variance is moderately inflated by outliers</code></pre>
 <section id="for-more-information" class="level3">
 <h3>For More Information</h3>
 <pre><code>$ cabal unpack cabal &amp;&amp; cd Cabal-1.**** &amp;&amp; cabal configure &amp;&amp; cabal haddock</code></pre>
-<hr />
-<hr />
-<p>“Languages flourish when libraries are plentiful, reliable, and well documented.” - Simon Peyton Jones</p>
 <hr />
 </section>
 </section>

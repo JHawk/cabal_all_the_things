@@ -300,6 +300,7 @@ What does "cabal init" do?
 -----------
 
 ### Conditional Thingy
+  
     if impl(ghc <= 7.4.2)
       build-depends:
         bytestring >= 0.9.1 && <0.10
@@ -339,9 +340,9 @@ What does "cabal init" do?
 
 ### Library Section
 
-**Requires exposed-modules**
+**Requires Exposed-Modules**
 
-Describes modules exposed to those using your package
+Describes modules exposed to the package's consumer
 
     library
       build-depends:
@@ -372,8 +373,6 @@ Describes an executable runnable from the command line
       -- alternatively 
       -- main-is:     src/Main.hs
 
-Are exposed-modules available?
-
 -----------
 
 ### Test-Suite Section
@@ -394,15 +393,11 @@ Executable that indicates failure with a non-zero exit code.
       type:              exitcode-stdio-1.0
       main-is:           Enterprise/FizzBuzzUnitTests.hs
 
-Are exposed-modules available?
-
 -----------
 
 ### Benchmark Section
 
 **Requires Unique Identifier, Main-Is, Type** 
-
-Executable that indicates failure with a non-zero exit code.
     
     benchmark enterpriseBench
       build-depends:     base ==4.5.*
@@ -414,8 +409,6 @@ Executable that indicates failure with a non-zero exit code.
       type:              exitcode-stdio-1.0
       main-is:           Enterprise/FizzBuzzBenchmarks.hs
 
-Are exposed-modules available?
-
 -----------
 
 ### Look at a Complete .cabal File.
@@ -424,6 +417,12 @@ Are exposed-modules available?
 
 Create All the Code
 =========
+
+### FizzBuzz
+
+Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.
+
+-----------
 
 ### Simple Main
 
@@ -486,12 +485,14 @@ Test All the Code
 -----------
 
 ### Unit Testing with HUnit
+
 * HUnit is an adaptation of JUnit 
 * Provides functions for writing Assertions
 * Assertions are types that on failure will output a message
 
 **Some assertion functions**
 
+    -- expected value
     assertEqual :: (Eq a, Show a) => String -> a -> a -> Assertion
     
     -- ? points to the actual
@@ -666,11 +667,5 @@ Release All the Code
 =========
 ### For More Information
     $ cabal unpack cabal && cd Cabal-1.**** && cabal configure && cabal haddock
-
------------
-
------------
-
-“Languages flourish when libraries are plentiful, reliable, and well documented.” - Simon Peyton Jones
 
 -----------
