@@ -7,7 +7,16 @@ Josh Hawkins
 
 April 24, 2013
 
-Forml pic
+Shameless Promotion
+-----------
+
+![](./img/forml.png)
+
+* Intended to approximate the type safety of Haskell with the expressiveness of Ruby 
+* Compiles to JS for all your web needs
+* Functional, strict, expressive, pure(ish), static(y), inferred, fast, fun
+* Strong like a gorilla, yet soft and yielding like a Nerf ball
+
 -----------
 
 ![](./img/cabal_start.jpg)
@@ -70,14 +79,7 @@ _cabal update_
       Creating new connection to hackage.haskell.org
       Received:
       HTTP/1.1 200 OK
-      Date: Tue, 16 Apr 2013 13:24:07 GMT
-      Server: Apache/2.2.9 (Debian) mod_python/3.3.1 Python/2.5.2
-      Last-Modified: Tue, 16 Apr 2013 12:15:46 GMT
-      ETag: "1888001-59f5ff-4da79543ca080"
-      Accept-Ranges: bytes
-      Content-Length: 5895679
-      Content-Type: application/x-tar
-      Content-Encoding: x-gzip
+      ...
       Downloaded to
       /Users/jhawkins/Library/Haskell/repo-cache/hackage.haskell.org/00-index.tar.gz
       Updating the index cache file...
@@ -185,7 +187,10 @@ Develop All the Packages
 
 -----------
 
-### What does "cabal init" do?
+
+What does "cabal init" do?
+=========
+
 #### An interactive command that aids in the generation of a .cabal file
 * Guesses at obvious descriptors - name, version, author, maintainer...
 * Gives some common options for the necessary fields 
@@ -226,14 +231,13 @@ Develop All the Packages
 
 .cabal All the Fields
 =========
+##### Provides a declarative description of your package
 
-##### Defined in the PackageDescription module of cabal
-
-* Provides a declarative description of your package.
-* Contains a top level description for use by Hackage.
-* Contains Build Information.
+* Defined in the PackageDescription module of cabal 
+* Contains a top level description for use by Hackage
+* Contains Build Information
 * Contains Flags
-* Contains a few Sections with build information.
+* Contains the Core Sections of your Package
 
 -----------
 
@@ -327,7 +331,7 @@ Develop All the Packages
 
 -----------
 
-![](./img/screenshot.jpg)
+![](./img/condThingy.jpg)
 -----------
  
 .cabal Sections
@@ -470,29 +474,50 @@ Run All the Code
 Test All the Code
 =========
 
-### with test-framework
+### Using test-framework
+**A test framework for combining tests made using QuickCheck and HUnit and much more…**
 
-* Test in parallel 
+* Test in parallel
 * Report in deterministic order
-* Supports Unit as well as Invariant tests
-
-**** may remove
-
-* Add your own test providers above and beyond those provided.
+* Supports Unit as well as Invariant tests via Providers
+* Supports test grouping and assertions
 * Reports failing seeds for QuickCheck
 
 -----------
 
-### HUnit
-* HUnit is an adaptation of JUnit
-* Use test-framework-hunit provider
-* More description
+### Unit Testing with HUnit
+* HUnit is an adaptation of JUnit 
+* Provides functions for writing Assertions
+* Assertions are types that on failure will output a message
+
+**Some assertion functions**
+
+    assertEqual :: (Eq a, Show a) => String -> a -> a -> Assertion
+    
+    -- ? points to the actual
+    (@=?) 
+    
+    (@?=) 
+    
+    (@?) :: AssertionPredicable t => t -> String -> Assertion
+
+
+-----------
+
+### HUnit Provider and the Test Framework
+HUnit Provider generates a Test from an Assertion
+
+    testCase :: TestName -> Assertion -> Test
+
+Test Framework assembles a number of tests into a cohesive group
+
+    testGroup :: TestName -> [Test] -> TestSource
 
 -----------
 
 ### A few HUnit tests
 
-![](./img/unitTests.jpg)
+![](./img/unitTests.png)
 
 -----------
 
@@ -501,15 +526,104 @@ Test All the Code
     $ cabal configure --enable-tests && cabal build && cabal test
     $ cabal configure --disable-tests && cabal build
 
-* What does it do?
 * Do the test-suite deps get added to the build if not enabled?
 
 -----------
 
-### How can I run my benchmarks?
+### Some output from our Test Suite
+
+    Test suite enterpriseUnit: RUNNING...
+    showing a fizzbuzz fail:
+      should fail: [Failed]
+    expected: "not here"
+      but got: "Buzz"
+    showing fizzbuzz pass:
+      should return 1: [OK]
+      should return Fizz: [OK]
+
+             Test Cases  Total      
+     Passed  2           2          
+     Failed  1           1          
+     Total   3           3          
+    Test suite enterpriseUnit: FAIL
+    Test suite logged to: dist/test/enterpriseFizzBuzz-0.1.0.0-enterpriseUnit.log
+    0 of 1 test suites (0 of 1 test cases) passed.
+
+-----------
+
+Criterion the Code
+=========
+
+### Confidence in Code Performance
+
+* Easy to build and run benchmarks for code confidence 
+* Provides easy to use functions for constructing Benchmarks and grouping them
+* Provides benchmarking for both IO actions and Pure functions
+* Provides some nice graphs for further inspection
+
+-----------
+
+### Constructing a Benchmark
+
+    run :: a -> Int -> IO ()
     
-    $ cabal configure --enable-benchmarks && cabal build && cabal bench
-    $ cabal configure --disable-benchmarks && cabal build
+    bench  :: Benchmarkable b => String -> b -> Benchmark
+	bgroup :: String -> [Benchmark] -> Benchmark
+
+* Benchmarks are one or many Benchmarkables
+* Benchmarkables have a single method run
+* Both Pure and IO instances
+* Function bench generates a Benchmark
+* Function bgroup groups Benchmarks together
+
+-----------
+
+### Creating a Pure Benchmarkable
+
+Evaluates results to normal form or weak head normal form
+
+    nf   :: NFData b => (a -> b) -> a -> Pure
+    whnf :: (a -> b) -> a -> Pure
+
+* nf   = fully evaluated
+* whnf = evaluated to the outermost data constructor
+
+It's important to ensure your code gets evaluated
+
+-----------
+
+### Some Benchmarks
+
+![](./img/bench.png)
+
+-----------
+
+### Run it with "cabal bench"!
+
+    $ cabal configure --enable-bench && cabal build && cabal bench
+    $ cabal configure --disable-bench && cabal build
+
+* Do the bench deps get added to the build if not enabled?
+
+-----------
+
+### Some output from our Benchmarks
+
+    benchmarking fizzBuzz head normal form/100
+	mean: 84.94579 ns, lb 84.61875 ns, ub 85.26468 ns, ci 0.950
+	std dev: 1.656436 ns, lb 1.389480 ns, ub 2.029530 ns, ci 0.950
+	found 8 outliers among 100 samples (8.0%)
+      3 (3.0%) low mild
+  	  4 (4.0%) high mild
+      1 (1.0%) high severe
+    variance introduced by outliers: 12.306%
+    variance is moderately inflated by outliers
+
+-----------
+
+### Enjoying the nice html output.
+
+     $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html
 
 -----------
 
@@ -520,7 +634,7 @@ Test All the Code
 -----------
 
 ### How do I get this code out the door?
-#### _cabal sdist_
+### _cabal sdist_
 * Building source dist for fizzbuzz-0.1.0.0...
 * Preprocessing executable 'fizzbuzz' for fizzbuzz-0.1.0.0...
 * Source tarball created: dist/fizzbuzz-0.1.0.0.tar.gz

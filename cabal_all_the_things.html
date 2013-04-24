@@ -57,8 +57,18 @@
 <p>Josh Hawkins</p>
 <p>April 24, 2013</p>
 </section>
-<section id="forml-pic" class="level2">
-<h2>Forml pic</h2>
+<section id="shameless-promotion" class="level2">
+<h2>Shameless Promotion</h2>
+<figure>
+<img src="./img/forml.png" />
+</figure>
+<ul>
+<li>Intended to approximate the type safety of Haskell with the expressiveness of Ruby</li>
+<li>Compiles to JS for all your web needs</li>
+<li>Functional, strict, expressive, pure(ish), static(y), inferred, fast, fun</li>
+<li>Strong like a gorilla, yet soft and yielding like a Nerf ball</li>
+</ul>
+<hr />
 </section>
 <section id="section" class="level2">
 <h2><img src="./img/cabal_start.jpg" /></h2>
@@ -129,14 +139,7 @@
   Creating new connection to hackage.haskell.org
   Received:
   HTTP/1.1 200 OK
-  Date: Tue, 16 Apr 2013 13:24:07 GMT
-  Server: Apache/2.2.9 (Debian) mod_python/3.3.1 Python/2.5.2
-  Last-Modified: Tue, 16 Apr 2013 12:15:46 GMT
-  ETag: &quot;1888001-59f5ff-4da79543ca080&quot;
-  Accept-Ranges: bytes
-  Content-Length: 5895679
-  Content-Type: application/x-tar
-  Content-Encoding: x-gzip
+  ...
   Downloaded to
   /Users/jhawkins/Library/Haskell/repo-cache/hackage.haskell.org/00-index.tar.gz
   Updating the index cache file...
@@ -244,8 +247,9 @@ Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.</code
 * upload</code></pre>
 <hr />
 </section>
-<section id="what-does-cabal-init-do" class="level3">
-<h3>What does &quot;cabal init&quot; do?</h3>
+</section>
+<section id="what-does-cabal-init-do" class="level1">
+<h1>What does &quot;cabal init&quot; do?</h1>
 <section id="an-interactive-command-that-aids-in-the-generation-of-a-.cabal-file" class="level4">
 <h4>An interactive command that aids in the generation of a .cabal file</h4>
 <ul>
@@ -256,7 +260,6 @@ Updating snap-0.11.2.2/snap.cabal with the latest revision from the index.</code
 <li>Adds descriptions and TODOs to the .cabal file</li>
 </ul>
 <hr />
-</section>
 </section>
 <section id="some-example-prompts" class="level3">
 <h3>Some example prompts</h3>
@@ -288,14 +291,14 @@ Include documentation on what each field means (y/n)? [default: n] </code></pre>
 </section>
 <section id="cabal-all-the-fields" class="level1">
 <h1>.cabal All the Fields</h1>
-<section id="defined-in-the-packagedescription-module-of-cabal" class="level5">
-<h5>Defined in the PackageDescription module of cabal</h5>
+<section id="provides-a-declarative-description-of-your-package" class="level5">
+<h5>Provides a declarative description of your package</h5>
 <ul>
-<li>Provides a declarative description of your package.</li>
-<li>Contains a top level description for use by Hackage.</li>
-<li>Contains Build Information.</li>
+<li>Defined in the PackageDescription module of cabal</li>
+<li>Contains a top level description for use by Hackage</li>
+<li>Contains Build Information</li>
 <li>Contains Flags</li>
-<li>Contains a few Sections with build information.</li>
+<li>Contains the Core Sections of your Package</li>
 </ul>
 <hr />
 </section>
@@ -381,7 +384,7 @@ else
 <hr />
 </section>
 <section id="section-1" class="level2">
-<h2><img src="./img/screenshot.jpg" /></h2>
+<h2><img src="./img/condThingy.jpg" /></h2>
 </section>
 </section>
 <section id="cabal-sections" class="level1">
@@ -510,33 +513,48 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 </section>
 <section id="test-all-the-code" class="level1">
 <h1>Test All the Code</h1>
-<section id="with-test-framework" class="level3">
-<h3>with test-framework</h3>
+<section id="using-test-framework" class="level3">
+<h3>Using test-framework</h3>
+<p><strong>A test framework for combining tests made using QuickCheck and HUnit and much more…</strong></p>
 <ul>
 <li>Test in parallel</li>
 <li>Report in deterministic order</li>
-<li>Supports Unit as well as Invariant tests</li>
-</ul>
-<p>**** may remove</p>
-<ul>
-<li>Add your own test providers above and beyond those provided.</li>
+<li>Supports Unit as well as Invariant tests via Providers</li>
+<li>Supports test grouping and assertions</li>
 <li>Reports failing seeds for QuickCheck</li>
 </ul>
 <hr />
 </section>
-<section id="hunit" class="level3">
-<h3>HUnit</h3>
+<section id="unit-testing-with-hunit" class="level3">
+<h3>Unit Testing with HUnit</h3>
 <ul>
 <li>HUnit is an adaptation of JUnit</li>
-<li>Use test-framework-hunit provider</li>
-<li>More description</li>
+<li>Provides functions for writing Assertions</li>
+<li>Assertions are types that on failure will output a message</li>
 </ul>
+<p><strong>Some assertion functions</strong></p>
+<pre><code>assertEqual :: (Eq a, Show a) =&gt; String -&gt; a -&gt; a -&gt; Assertion
+
+-- ? points to the actual
+(@=?) 
+
+(@?=) 
+
+(@?) :: AssertionPredicable t =&gt; t -&gt; String -&gt; Assertion</code></pre>
+<hr />
+</section>
+<section id="hunit-provider-and-the-test-framework" class="level3">
+<h3>HUnit Provider and the Test Framework</h3>
+<p>HUnit Provider generates a Test from an Assertion</p>
+<pre><code>testCase :: TestName -&gt; Assertion -&gt; Test</code></pre>
+<p>Test Framework assembles a number of tests into a cohesive group</p>
+<pre><code>testGroup :: TestName -&gt; [Test] -&gt; TestSource</code></pre>
 <hr />
 </section>
 <section id="a-few-hunit-tests" class="level3">
 <h3>A few HUnit tests</h3>
 <figure>
-<img src="./img/unitTests.jpg" />
+<img src="./img/unitTests.png" />
 </figure>
 <hr />
 </section>
@@ -545,9 +563,104 @@ enterpriseFizzBuzz: Prelude.undefined</code></pre>
 <pre><code>$ cabal configure --enable-tests &amp;&amp; cabal build &amp;&amp; cabal test
 $ cabal configure --disable-tests &amp;&amp; cabal build</code></pre>
 <ul>
-<li>What does it do?</li>
 <li>Do the test-suite deps get added to the build if not enabled?</li>
 </ul>
+<hr />
+</section>
+<section id="some-output-from-our-test-suite" class="level3">
+<h3>Some output from our Test Suite</h3>
+<pre><code>Test suite enterpriseUnit: RUNNING...
+showing a fizzbuzz fail:
+  should fail: [Failed]
+expected: &quot;not here&quot;
+  but got: &quot;Buzz&quot;
+showing fizzbuzz pass:
+  should return 1: [OK]
+  should return Fizz: [OK]
+
+         Test Cases  Total      
+ Passed  2           2          
+ Failed  1           1          
+ Total   3           3          
+Test suite enterpriseUnit: FAIL
+Test suite logged to: dist/test/enterpriseFizzBuzz-0.1.0.0-enterpriseUnit.log
+0 of 1 test suites (0 of 1 test cases) passed.</code></pre>
+<hr />
+</section>
+</section>
+<section id="criterion-the-code" class="level1">
+<h1>Criterion the Code</h1>
+<section id="confidence-in-code-performance" class="level3">
+<h3>Confidence in Code Performance</h3>
+<ul>
+<li>Easy to build and run benchmarks for code confidence</li>
+<li>Provides easy to use functions for constructing Benchmarks and grouping them</li>
+<li>Provides benchmarking for both IO actions and Pure functions</li>
+<li>Provides some nice graphs for further inspection</li>
+</ul>
+<hr />
+</section>
+<section id="constructing-a-benchmark" class="level3">
+<h3>Constructing a Benchmark</h3>
+<pre><code>run :: a -&gt; Int -&gt; IO ()
+
+bench  :: Benchmarkable b =&gt; String -&gt; b -&gt; Benchmark
+bgroup :: String -&gt; [Benchmark] -&gt; Benchmark</code></pre>
+<ul>
+<li>Benchmarks are one or many Benchmarkables</li>
+<li>Benchmarkables have a single method run</li>
+<li>Both Pure and IO instances</li>
+<li>Function bench generates a Benchmark</li>
+<li>Function bgroup groups Benchmarks together</li>
+</ul>
+<hr />
+</section>
+<section id="creating-a-pure-benchmarkable" class="level3">
+<h3>Creating a Pure Benchmarkable</h3>
+<p>Evaluates results to normal form or weak head normal form</p>
+<pre><code>nf   :: NFData b =&gt; (a -&gt; b) -&gt; a -&gt; Pure
+whnf :: (a -&gt; b) -&gt; a -&gt; Pure</code></pre>
+<ul>
+<li>nf = fully evaluated</li>
+<li>whnf = evaluated to the outermost data constructor</li>
+</ul>
+<p>It's important to ensure your code gets evaluated</p>
+<hr />
+</section>
+<section id="some-benchmarks" class="level3">
+<h3>Some Benchmarks</h3>
+<figure>
+<img src="./img/bench.png" />
+</figure>
+<hr />
+</section>
+<section id="run-it-with-cabal-test-1" class="level3">
+<h3>Run it with &quot;cabal test&quot;!</h3>
+<pre><code>$ cabal configure --enable-tests &amp;&amp; cabal build &amp;&amp; cabal test
+$ cabal configure --disable-tests &amp;&amp; cabal build</code></pre>
+<ul>
+<li>Do the test-suite deps get added to the build if not enabled?</li>
+</ul>
+<hr />
+</section>
+<section id="some-output-from-our-test-suite-1" class="level3">
+<h3>Some output from our Test Suite</h3>
+<pre><code>Test suite enterpriseUnit: RUNNING...
+showing a fizzbuzz fail:
+  should fail: [Failed]
+expected: &quot;not here&quot;
+  but got: &quot;Buzz&quot;
+showing fizzbuzz pass:
+  should return 1: [OK]
+  should return Fizz: [OK]
+
+         Test Cases  Total      
+ Passed  2           2          
+ Failed  1           1          
+ Total   3           3          
+Test suite enterpriseUnit: FAIL
+Test suite logged to: dist/test/enterpriseFizzBuzz-0.1.0.0-enterpriseUnit.log
+0 of 1 test suites (0 of 1 test cases) passed.</code></pre>
 <hr />
 </section>
 <section id="how-can-i-run-my-benchmarks" class="level3">
@@ -561,17 +674,22 @@ $ cabal configure --disable-benchmarks &amp;&amp; cabal build</code></pre>
 <pre><code> $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></pre>
 <hr />
 </section>
+<section id="enjoying-the-nice-html-output.-1" class="level3">
+<h3>Enjoying the nice html output.</h3>
+<pre><code> $ ./dist/build/enterpriseBench/enterpriseBench -o enterpriseBench.html</code></pre>
+<hr />
+</section>
 <section id="how-do-i-get-this-code-out-the-door" class="level3">
 <h3>How do I get this code out the door?</h3>
-<section id="cabal-sdist" class="level4">
-<h4><em>cabal sdist</em></h4>
+</section>
+<section id="cabal-sdist" class="level3">
+<h3><em>cabal sdist</em></h3>
 <ul>
 <li>Building source dist for fizzbuzz-0.1.0.0...</li>
 <li>Preprocessing executable 'fizzbuzz' for fizzbuzz-0.1.0.0...</li>
 <li>Source tarball created: dist/fizzbuzz-0.1.0.0.tar.gz</li>
 </ul>
 <hr />
-</section>
 <section id="for-those-who-want-to-give-back" class="level4">
 <h4>For those who want to give back,</h4>
 </section>
